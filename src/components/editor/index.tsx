@@ -2,7 +2,7 @@ import CodeMirror, { ReactCodeMirrorProps } from '@uiw/react-codemirror';
 import { basicSetup } from '@uiw/codemirror-extensions-basic-setup';
 import styles from './index.module.css';
 
-const JsonEditor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) => {
+const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) => {
   const { title, extensions, className,...rest } = props;
   return (
     <div>
@@ -24,4 +24,4 @@ const JsonEditor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) =>
   )
 }
 
-export default JsonEditor;
+export default Editor;

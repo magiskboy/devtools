@@ -5,12 +5,12 @@ const FMT_TOOLS = [
   {name: 'Jsonnet', path: '/jsonnet'},
   {name: 'SQL formatter', path: '/sql-fmt'},
   {name: 'YAML - JSON converter', path: '/yaml-json'},
+  {name: 'YAML fmt', path: '/yaml-fmt'},
 ];
 
 const VIEWER_TOOLS = [
   {name: 'URL - wip', path: '/url-viewer'},
   {name: 'HTML - wip', path: '/html-viewer'},
-  {name: 'YAML - wip', path: '/yaml-viewer'},
   {name: 'JSON - wip', path: '/json-viewer'},
   {name: 'OpenAPI - wip', path: '/openapi-viewer'},
 

@@ -33,6 +33,8 @@ const Layout = () => {
                 <li className={styles.title}>Encode / Decode</li>
                 <li><Link to="/base64">Base64</Link></li>
                 <li><Link to="/jwt">JWT</Link></li>
+                <li><Link to="/html-escape">HTML escape</Link></li>
+                <li><Link to="/url-encode-decode">URL encode/decode</Link></li>
               </ul>
             </div>
           </div>

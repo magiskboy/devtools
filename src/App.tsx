@@ -1,34 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Link } from 'react-router';
+import styles from './App.module.css';
+
+const FMT_TOOLS = [
+  {name: 'Jsonnet', path: '/jsonnet'},
+  {name: 'SQL formatter', path: '/sql-fmt'},
+  {name: 'YAML - JSON converter', path: '/yaml-json'},
+];
+
+const VIEWER_TOOLS = [
+  {name: 'URL - wip', path: '/url-viewer'},
+  {name: 'HTML - wip', path: '/html-viewer'},
+  {name: 'YAML - wip', path: '/yaml-viewer'},
+  {name: 'JSON - wip', path: '/json-viewer'},
+  {name: 'OpenAPI - wip', path: '/openapi-viewer'},
+
+];
+
+const ENCODE_TOOLS = [
+  {name: 'Base64 - wip', path: '/base64'},
+  {name: 'JWT - wip', path: '/jwt'},
+  {name: 'HTML escape - wip', path: '/html-escape'},
+  {name: 'URL encode/decode - wip', path: '/url-encode-decode'},
+];
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="container">
+      <div className={styles.heading}>
+        <h1>DevTools</h1>
+        <p>Tools for developers<br />The Ultimate Toolkit to Simplify, Automate, and Enhance Your Development Workflow!</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+      <div className={styles['tools']}>
+        <GroupTool title="Formatter" tools={FMT_TOOLS} />
+        <GroupTool title="Viewer" tools={VIEWER_TOOLS} />
+        <GroupTool title="Encode" tools={ENCODE_TOOLS} />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
+  )
+}
+
+const GroupTool: React.FC<{title: string, tools: {path: string, name: string}[]}> = ({title, tools}) => {
+  return (
+    <div className={styles['group-tools']}>
+      <div className={styles['group-title']}>{title}</div>
+      <div className={styles['group-content']}>
+        {tools.map(({ path, name }) => (
+          <div className={styles['group-item']} >
+            <Link to={path}>{name}</Link>
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 

@@ -1,0 +1,38 @@
+.heading {
+  width: 100%;
+  text-align: center;
+  padding: 4em 0;
+}
+
+.heading p {
+  font-style: italic;
+  font-size: 1.2em;
+}
+
+.tools {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.group-tools {
+  display: flex;
+  flex-direction: column;
+}
+
+.group-title {
+  font-weight: 500;
+  margin: 0 0 16px 0;
+  font-size: 1.1em;
+}
+
+.group-content {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 8px;
+}
+
+.group-item {
+  text-align: center;
+}
+

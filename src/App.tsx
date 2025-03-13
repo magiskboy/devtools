@@ -26,7 +26,7 @@ const ENCODE_TOOLS = [
 
 function App() {
   return (
-    <div className="container">
+    <div className={`container ${styles.root}`}>
       <div className={styles.heading}>
         <h1>DevTools</h1>
         <p>Tools for developers<br />The Ultimate Toolkit to Simplify, Automate, and Enhance Your Development Workflow!</p>

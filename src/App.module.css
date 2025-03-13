@@ -1,3 +1,7 @@
+.root {
+  height: 100%;
+}
+
 .heading {
   width: 100%;
   text-align: center;

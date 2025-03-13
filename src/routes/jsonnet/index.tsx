@@ -4,6 +4,7 @@ import styles from './index.module.css';
 import Editor from '../../components/editor';
 import { useMenuContext } from '../../contexts/menu';
 import { StreamLanguage } from '@codemirror/language';
+import { jsonnet } from '../../libs/jsonnet-streamline-parser';
 
 
 const DEFAULT_JSONNET = `// Edit me!
@@ -45,7 +46,7 @@ const JsonnetPage = () => {
         <Editor
           title="Jsonnet"
           value={code} 
-          extensions={[[StreamLanguage.define(window.jsonnet)]]}
+          extensions={[[StreamLanguage.define(jsonnet)]]}
           onChange={onChange} 
           className={`${styles.input}`}
         />

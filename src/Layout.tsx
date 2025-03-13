@@ -6,7 +6,7 @@ import { useMenuContext } from './contexts/menu';
 const Layout = () => {
   const { title } = useMenuContext();
   return (
-    <div className="container">
+    <div className={`container ${styles.root}`}>
       <div className={`row ${styles.topbar}`}>
         <div className={styles.menu}>
           <img src="/images/dots.png" width={32} height={32} />
@@ -42,6 +42,12 @@ const Layout = () => {
         <h4 style={{marginLeft: '16px'}}>{title}</h4>
       </div>
       <Outlet />
+
+      <div className={`row ${styles.footer}`}>
+        <div className="column">
+          Copyright &copy; {new Date().getFullYear()} - <a href="https://nkthanh.dev">nkthanh.dev</a>
+        </div>
+      </div>
     </div>
   )
 }

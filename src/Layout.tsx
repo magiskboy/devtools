@@ -15,9 +15,10 @@ const Layout = () => {
               <ul className="column">
                 <li className={styles.title}>Formatter</li>
                 <li><Link to="/jsonnet">Jsonnet</Link></li>
-                <li><Link to="/sql-fmt">SQL formatter</Link></li>
-                <li><Link to="/yaml-json">YAML - JSON converter</Link></li>
+                <li><Link to="/sql-fmt">SQL fmt</Link></li>
+                <li><Link to="/yaml-json">YAML - JSON</Link></li>
                 <li><Link to="/yaml-fmt">YAML fmt</Link></li>
+                <li><Link to="/json-fmt">JSON fmt</Link></li>
               </ul>
               <ul className="column">
                 <li className={styles.title}>Internet</li>
@@ -26,7 +27,6 @@ const Layout = () => {
                 <li className={styles.title}>Viewer</li>
                 <li><Link to="/url-viewer">URL</Link></li>
                 <li><Link to="/html-viewer">HTML</Link></li>
-                <li><Link to="/json-viewer">JSON</Link></li>
                 <li><Link to="/openapi-viewer">OpenAPI</Link></li>
               </ul>
               <ul className="column">

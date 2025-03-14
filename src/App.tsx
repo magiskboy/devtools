@@ -3,15 +3,15 @@ import styles from './App.module.css';
 
 const FMT_TOOLS = [
   {name: 'Jsonnet', path: '/jsonnet'},
-  {name: 'SQL formatter', path: '/sql-fmt'},
-  {name: 'YAML - JSON converter', path: '/yaml-json'},
+  {name: 'SQL fmt', path: '/sql-fmt'},
+  {name: 'YAML - JSON', path: '/yaml-json'},
   {name: 'YAML fmt', path: '/yaml-fmt'},
+  {name: 'JSON fmt', path: '/json-fmt'},
 ];
 
 const VIEWER_TOOLS = [
-  {name: 'URL - wip', path: '/url-viewer'},
-  {name: 'HTML - wip', path: '/html-viewer'},
-  {name: 'JSON - wip', path: '/json-viewer'},
+  {name: 'URL', path: '/url-viewer'},
+  {name: 'HTML', path: '/html-viewer'},
   {name: 'OpenAPI - wip', path: '/openapi-viewer'},
 
 ];

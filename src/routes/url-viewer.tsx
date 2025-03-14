@@ -14,69 +14,105 @@ function RouteComponent() {
   }
 
   useEffect(() => {
-    if (!url) return;
-    setParsed(new URL(url));
+    try {
+      setParsed(new URL(url));
+    } catch {
+      setParsed(undefined);
+    }
   }, [url])
 
   return (
-    <>
-      <div className="row bg-red-50">
-        <div className="column">
-          <label htmlFor='url'>URL
-            <input type="text" onChange={onChange} id="url" value={url} />
-          </label>
+    <div>
+      <div className="field">
+        <div className="control">
+          <input className="input is-fullwidth" type="text" onChange={onChange} value={url} placeholder='Enter URL' />
         </div>
       </div>
-      {parsed &&
-      <>
-        <strong>Parsed</strong>
-        <table>
-          <tbody>
-            <tr>
-              <td>Protocol</td>
-              <td>{parsed.protocol.slice(0, -1)}</td>
-            </tr>
-            <tr>
-              <td>Hostname</td>
-              <td>{parsed.hostname}</td>
-            </tr>
-            <tr>
-              <td>Port</td>
-              <td>{parsed.port ?? parsed.protocol === 'https:' ? '443' : '80'}</td>
-            </tr>
-            <tr>
-              <td>Pathname</td>
-              <td>{parsed.pathname}</td>
-            </tr>
-            <tr>
-              <td>Search</td>
-              <td style={{display: 'flex', flexDirection: 'column', gap: '1em'}}>
-                {Array.from(parsed.searchParams.entries()).map(([key, value]) => (
-                  <label key={key} htmlFor={key} style={{display: 'flex', alignItems: 'center', gap: '1em', fontWeight: 'normal'}} onClick={() => {
-                    navigator.clipboard.writeText(value);
-                  }}>{key}
-                    <input type="text" value={value} id={key} style={{margin: 0}} readOnly />
-                  </label>
-                ))}
 
-              </td>
-            </tr>
-            <tr>
-              <td>Hash</td>
-              <td>{parsed.hash}</td>
-            </tr>
-            <tr>
-              <td>Username</td>
-              <td>{parsed.username}</td>
-            </tr>
-            <tr>
-              <td>Password</td>
-              <td>{parsed.password}</td>
-            </tr>
-          </tbody>
-        </table>
-      </>
-      }
-    </>
+      <div className="mt-4 p-0">
+        <h2 className="is-size-5 my-4">Parsed</h2>
+
+        <div className="columns">
+          <div className="column is-2">
+            Protocol
+          </div>
+          <div className="column is-10">
+            { parsed?.protocol.slice(0, -1) }
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-2">
+            Hostname
+          </div>
+          <div className="column is-10">
+            { parsed?.hostname }
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-2">
+            Port
+          </div>
+          <div className="column is-10">
+            { parsed?.port ? parsed?.port : parsed?.protocol === 'https:' ? 443 : parsed?.protocol === 'http:' ? 80 : '' }
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-2">
+            Username
+          </div>
+          <div className="column is-10">
+            { parsed?.username }
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-2">
+            Password
+          </div>
+          <div className="column is-10">
+            { parsed?.password }
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-2">
+            Path
+          </div>
+          <div className="column is-10">
+            { parsed?.pathname }
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-2">
+            Fragment
+          </div>
+          <div className="column is-10">
+            { parsed?.hash }
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-2">
+            Query
+          </div>
+          <div className="column is-10">
+            {Array.from(parsed?.searchParams.entries() ?? []).map(([key, value]) => (
+              <div className="columns" key={key}>
+                <div className="column is-2">
+                  {key}
+                </div>
+                <div className="column is-10">
+                  {value}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

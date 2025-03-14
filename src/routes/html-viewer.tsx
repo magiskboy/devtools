@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useState } from "react";
 import { html } from '@codemirror/lang-html';
 import Editor from "../components/editor";
+import { html_beautify } from 'js-beautify';
 
 export const Route = createFileRoute('/html-viewer')({
   component: RouteComponent,
@@ -9,27 +10,59 @@ export const Route = createFileRoute('/html-viewer')({
 
 function RouteComponent() {
   const [htmlValue, setHTML] = useState(HTML_VALUE_DEFAULT);
+  const [setting, setSetting] = useState({
+    indentSize: 2,
+  });
   
   const onChange = (value: string) => {
     setHTML(value);
   }
 
+  const onChangeSetting: React.ChangeEventHandler<HTMLFormElement> = (event) => {
+    const value = event.target.value;
+    setSetting({
+      ...setting,
+      [event.target.name]: event.target.type === 'number' ? Number(value) : value
+    });
+  }
+
+  const onFormat: React.FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+
+    const result = html_beautify(htmlValue, {
+      indent_size: setting.indentSize,
+    });
+
+    setHTML(result);
+  }
+
+
   return (
-    <>
-      <div className="row" style={{marginBottom: '2em'}}>
-        <div className="column">
+    <div>
+      <div className="columns">
+        <div className="column is-10">
           <Editor height="600px" onChange={onChange} value={htmlValue} extensions={[html()]} />
         </div>
-      </div>
-      <div className="row" style={{display: 'flex', flexDirection: 'column'}}>
-        <div className="column">
-          <h4>Preview</h4>
+        <div className="column is-2">
+          <form onChange={onChangeSetting} onSubmit={onFormat}>
+            <div className="field">
+              <label className="label">Tab Width</label>
+              <div className="control">
+                <input className="input" name="indentSize" type="number" min={0} max={4} defaultValue={setting.indentSize} value={setting.indentSize} />
+              </div>
+            </div>
+            <button className="button is-primary is-fullwidth">Format</button>
+          </form>
         </div>
-        <div className="column">
+      </div>
+
+      <div className="columns is-flex is-flex-direction-column">
+        <h4 className="is-size-5 column is-12">Preview</h4>
+        <div className="column is-12">
           <iframe srcDoc={htmlValue} width={"100%"} height={'600px'} frameBorder={1} style={{ background: 'white' }} />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as YamlJsonImport } from './routes/yaml-json'
 import { Route as YamlFmtImport } from './routes/yaml-fmt'
+import { Route as WebBeautifyImport } from './routes/web-beautify'
 import { Route as UrlViewerImport } from './routes/url-viewer'
 import { Route as SqlFmtImport } from './routes/sql-fmt'
 import { Route as OpenapiImport } from './routes/openapi'
@@ -32,6 +33,12 @@ const YamlJsonRoute = YamlJsonImport.update({
 const YamlFmtRoute = YamlFmtImport.update({
   id: '/yaml-fmt',
   path: '/yaml-fmt',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const WebBeautifyRoute = WebBeautifyImport.update({
+  id: '/web-beautify',
+  path: '/web-beautify',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -130,6 +137,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UrlViewerImport
       parentRoute: typeof rootRoute
     }
+    '/web-beautify': {
+      id: '/web-beautify'
+      path: '/web-beautify'
+      fullPath: '/web-beautify'
+      preLoaderRoute: typeof WebBeautifyImport
+      parentRoute: typeof rootRoute
+    }
     '/yaml-fmt': {
       id: '/yaml-fmt'
       path: '/yaml-fmt'
@@ -157,6 +171,7 @@ export interface FileRoutesByFullPath {
   '/openapi': typeof OpenapiRoute
   '/sql-fmt': typeof SqlFmtRoute
   '/url-viewer': typeof UrlViewerRoute
+  '/web-beautify': typeof WebBeautifyRoute
   '/yaml-fmt': typeof YamlFmtRoute
   '/yaml-json': typeof YamlJsonRoute
 }
@@ -169,6 +184,7 @@ export interface FileRoutesByTo {
   '/openapi': typeof OpenapiRoute
   '/sql-fmt': typeof SqlFmtRoute
   '/url-viewer': typeof UrlViewerRoute
+  '/web-beautify': typeof WebBeautifyRoute
   '/yaml-fmt': typeof YamlFmtRoute
   '/yaml-json': typeof YamlJsonRoute
 }
@@ -182,6 +198,7 @@ export interface FileRoutesById {
   '/openapi': typeof OpenapiRoute
   '/sql-fmt': typeof SqlFmtRoute
   '/url-viewer': typeof UrlViewerRoute
+  '/web-beautify': typeof WebBeautifyRoute
   '/yaml-fmt': typeof YamlFmtRoute
   '/yaml-json': typeof YamlJsonRoute
 }
@@ -196,6 +213,7 @@ export interface FileRouteTypes {
     | '/openapi'
     | '/sql-fmt'
     | '/url-viewer'
+    | '/web-beautify'
     | '/yaml-fmt'
     | '/yaml-json'
   fileRoutesByTo: FileRoutesByTo
@@ -207,6 +225,7 @@ export interface FileRouteTypes {
     | '/openapi'
     | '/sql-fmt'
     | '/url-viewer'
+    | '/web-beautify'
     | '/yaml-fmt'
     | '/yaml-json'
   id:
@@ -218,6 +237,7 @@ export interface FileRouteTypes {
     | '/openapi'
     | '/sql-fmt'
     | '/url-viewer'
+    | '/web-beautify'
     | '/yaml-fmt'
     | '/yaml-json'
   fileRoutesById: FileRoutesById
@@ -231,6 +251,7 @@ export interface RootRouteChildren {
   OpenapiRoute: typeof OpenapiRoute
   SqlFmtRoute: typeof SqlFmtRoute
   UrlViewerRoute: typeof UrlViewerRoute
+  WebBeautifyRoute: typeof WebBeautifyRoute
   YamlFmtRoute: typeof YamlFmtRoute
   YamlJsonRoute: typeof YamlJsonRoute
 }
@@ -243,6 +264,7 @@ const rootRouteChildren: RootRouteChildren = {
   OpenapiRoute: OpenapiRoute,
   SqlFmtRoute: SqlFmtRoute,
   UrlViewerRoute: UrlViewerRoute,
+  WebBeautifyRoute: WebBeautifyRoute,
   YamlFmtRoute: YamlFmtRoute,
   YamlJsonRoute: YamlJsonRoute,
 }
@@ -264,6 +286,7 @@ export const routeTree = rootRoute
         "/openapi",
         "/sql-fmt",
         "/url-viewer",
+        "/web-beautify",
         "/yaml-fmt",
         "/yaml-json"
       ]
@@ -288,6 +311,9 @@ export const routeTree = rootRoute
     },
     "/url-viewer": {
       "filePath": "url-viewer.tsx"
+    },
+    "/web-beautify": {
+      "filePath": "web-beautify.tsx"
     },
     "/yaml-fmt": {
       "filePath": "yaml-fmt.tsx"

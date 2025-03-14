@@ -8,7 +8,7 @@ export const Route = createFileRoute('/openapi')({
 function RouteComponent() {
   const [type, setType] = useState('link');
   const [link, setLink] = useState('https://petstore.swagger.io/v2/swagger.json');
-  const [fileContent, setFileContent] = useState<string>('');
+  const [, setFileContent] = useState<string>('');
   
   return (
     <>

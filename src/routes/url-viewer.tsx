@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react';
+import { useMenuContext } from '../contexts/menu';
 
 export const Route = createFileRoute('/url-viewer')({
   component: RouteComponent,
@@ -8,10 +9,15 @@ export const Route = createFileRoute('/url-viewer')({
 function RouteComponent() {
   const [url, setURL] = useState('https://username:password@example.com:8080/path/to/resource?query1=value1&query2=value2#section1');
   const [parsed, setParsed] = useState<URL>();
+  const { setTitle } = useMenuContext();
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setURL(event.target.value.trim());
   }
+
+  useEffect(() => {
+    setTitle('URL Viewer');
+  }, [setTitle]);
 
   useEffect(() => {
     try {

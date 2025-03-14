@@ -77,14 +77,14 @@ export const SearchModal = () => {
 
           {results.length > 0 ? (
             
-            <div className="box">
+            <div className="mt-4">
               {results.map((route) => (
                 <div key={route.name} className="box">
                   <Link to={route.path}>{route.name}</Link>
                 </div>
               ))}
             </div>) : (
-              <div className="is-flex is-justify-content-center">No results</div>
+              <div className="is-flex is-justify-content-center mt-4">No results</div>
             )}
         </div>
       </div>

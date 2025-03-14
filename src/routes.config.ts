@@ -7,4 +7,5 @@ export const ROUTE_CONFIG = [
   { "name": "URL", "path": "/url-viewer", "description": "A tool for decoding and encoding URLs, allowing users to inspect and manipulate URL-encoded strings." },
   { "name": "HTML", "path": "/html-viewer", "description": "A viewer that renders and previews raw HTML content, helping users visualize HTML structure and output." },
   // { "name": "OpenAPI", "path": "/openapi", "description": "A viewer and editor for OpenAPI specifications, assisting in designing and documenting RESTful APIs." }
+  {"name": "Web beautifier", "path": "/web-beautify", "description": "A tool for beautifying and formatting web code, such as HTML, CSS, JSON and JavaScript."}
 ]

@@ -6,6 +6,10 @@ declare global {
   }
 
   function getJsonnet(jnWasm: Promise<Response>): Promise<Jsonnet>;
+
+  interface Window {
+    gtag: (action: string, id: string, params: object) => void;
+  }
 }
 
 declare module '@tanstack/react-router' {
@@ -13,4 +17,6 @@ declare module '@tanstack/react-router' {
     router: typeof router
   }
 }
+
+
 

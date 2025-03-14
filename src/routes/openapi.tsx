@@ -1,7 +1,11 @@
+import { createFileRoute } from '@tanstack/react-router'
 import { useState } from "react";
 
+export const Route = createFileRoute('/openapi')({
+  component: RouteComponent,
+})
 
-const Page = () => {
+function RouteComponent() {
   const [type, setType] = useState('link');
   const [link, setLink] = useState('https://petstore.swagger.io/v2/swagger.json');
   const [fileContent, setFileContent] = useState<string>('');
@@ -58,5 +62,3 @@ const getHtmlContent = (link: string) => {
       </body>
     </html>`;
 }
-
-export default Page;

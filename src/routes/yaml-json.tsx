@@ -1,14 +1,19 @@
-import Editor from '../../components/editor';
+import { createFileRoute } from '@tanstack/react-router'
+import Editor from '../components/editor';
 import { json } from '@codemirror/lang-json';
 import { StreamLanguage } from '@codemirror/language';
 import { yaml } from '@codemirror/legacy-modes/mode/yaml';
 import { useEffect, useState } from 'react';
 import yamljs from 'js-yaml';
-import { useMenuContext } from '../../contexts/menu';
+import { useMenuContext } from '../contexts/menu';
 
-const Page = () => {
+export const Route = createFileRoute('/yaml-json')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
   const [jsonValue, setJSON] = useState('');
-  const [yamlValue, setYAML] = useState('');
+  const [yamlValue, setYAML] = useState(DEFAULT_YAML);
   const { setTitle } = useMenuContext();
 
   useEffect(() => {
@@ -32,8 +37,8 @@ const Page = () => {
   }
 
   return (
-    <div className="row">
-      <div className="column column-50">
+    <div className="columns">
+      <div className="column">
         <Editor
           value={jsonValue}
           title="JSON"
@@ -41,7 +46,7 @@ const Page = () => {
           onChange={onChangeJson}
         />
       </div>
-      <div className="column column-50">
+      <div className="column">
         <Editor
           title="YAML"
           value={yamlValue}
@@ -53,4 +58,14 @@ const Page = () => {
   )
 }
 
-export default Page;
+const DEFAULT_YAML = 
+`apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80`;

@@ -1,5 +1,6 @@
 import CodeMirror, { ReactCodeMirrorProps } from '@uiw/react-codemirror';
 import { basicSetup } from '@uiw/codemirror-extensions-basic-setup';
+import { isDarkMode } from '../../libs/helpers';
 import styles from './index.module.css';
 
 const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) => {
@@ -19,6 +20,7 @@ const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) => {
         className={`${className || ''} ${styles.editor}`}
         height='600px'
         maxHeight='600px'
+        theme={isDarkMode() ? 'dark' : 'light'}
       />
     </div>
   )

@@ -16,6 +16,7 @@
     "@codemirror/lang-sql": "^6.8.0",
     "@codemirror/language": "^6.10.8",
     "@codemirror/legacy-modes": "^6.4.3",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@tanstack/react-router": "^1.114.17",
     "@uiw/codemirror-extensions-basic-setup": "^4.23.10",
     "@uiw/react-codemirror": "^4.23.10",
@@ -23,6 +24,7 @@
     "classnames": "^2.5.1",
     "js-beautify": "^1.15.4",
     "js-yaml": "^4.1.0",
+    "jwt-decode": "^4.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sql-formatter": "^15.4.11"

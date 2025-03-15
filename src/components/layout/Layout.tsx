@@ -1,6 +1,5 @@
 import { useLocation } from '@tanstack/react-router';
 import { PropsWithChildren } from 'react';
-import cls from 'classnames';
 import { Navbar } from '../navbar';
 import { Footer } from '../footer';
 
@@ -9,7 +8,7 @@ export const Layout: React.FC<PropsWithChildren> = ({children}) => {
   const isHome = pathname === '/';
 
   return (
-    <div className={cls({'container': true, 'py-6': isHome })}>
+    <div className="container">
       {!isHome && <Navbar />}
       {children}
       <Footer />

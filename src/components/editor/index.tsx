@@ -7,9 +7,8 @@ const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) => {
   const { title, extensions, className,...rest } = props;
   return (
     <div>
-      {title && <strong>{title}</strong>}
+      {title && <p className="is-size-6 mb-2">{title}</p>}
       <CodeMirror 
-        {...rest}
         extensions={[
           basicSetup({
             foldGutter: false,
@@ -21,6 +20,15 @@ const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) => {
         height='600px'
         maxHeight='600px'
         theme={isDarkMode() ? 'dark' : 'light'}
+        style={{overflow: 'scroll'}}
+        ref={(ref) => {
+          const width = ref?.editor?.clientWidth;
+          if (width && ref.editor) {
+            ref.editor.style.width = `${width}px`;
+          }
+
+        }}
+        {...rest}
       />
     </div>
   )

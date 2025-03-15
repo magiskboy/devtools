@@ -10,12 +10,15 @@ export const SearchModal = () => {
   const [keyword, setKeyword] = useState('');
   const [results, setResults] = useState<Array<typeof ROUTE_CONFIG[0]>>([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const searchToolRegistry = (event: KeyboardEvent) => {
+      event.stopPropagation();
+
       const keyCode = event.key;
 
       if (keyCode === 'Escape') {
         setShow(false);
+        setKeyword('');
         return;
       }
       
@@ -33,12 +36,8 @@ export const SearchModal = () => {
   }, []);
 
   useEffect(() => {
-    if (show) {
-      inputRef.current?.focus();
-      setKeyword('');
-    }
-    else {
-      inputRef.current?.blur();
+    if (show && inputRef.current) {
+      inputRef.current.focus();
     }
   }, [show]);
 
@@ -50,8 +49,8 @@ export const SearchModal = () => {
     const results = ROUTE_CONFIG.filter((route) => {
       return route.name.toLowerCase().includes(keyword.toLowerCase());
     }).slice(0, 5);
-    setResults(results);
 
+    setResults(results);
   }, [keyword]);
 
   return (

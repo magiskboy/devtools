@@ -49,10 +49,10 @@ function RouteComponent() {
 
   return (
     <div className="block columns">
-      <div className="column is-three-quarters">
+      <div className="column is-10">
         <Editor value={sqlQuery} onChange={onChange} extensions={[sql()]} />
       </div>
-      <div className="column">
+      <div className="column is-2">
         <form onChange={onChangeSetting} onSubmit={onFormat} className="is-flex is-flex-direction-column">
           <div className="field">
             <label className="label">Language</label>

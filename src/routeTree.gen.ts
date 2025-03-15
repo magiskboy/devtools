@@ -17,9 +17,11 @@ import { Route as WebBeautifyImport } from './routes/web-beautify'
 import { Route as UrlViewerImport } from './routes/url-viewer'
 import { Route as SqlFmtImport } from './routes/sql-fmt'
 import { Route as OpenapiImport } from './routes/openapi'
+import { Route as JwtDecodeImport } from './routes/jwt-decode'
 import { Route as JsonnetImport } from './routes/jsonnet'
 import { Route as JsonFmtImport } from './routes/json-fmt'
 import { Route as HtmlViewerImport } from './routes/html-viewer'
+import { Route as Base64Import } from './routes/base64'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -60,6 +62,12 @@ const OpenapiRoute = OpenapiImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const JwtDecodeRoute = JwtDecodeImport.update({
+  id: '/jwt-decode',
+  path: '/jwt-decode',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const JsonnetRoute = JsonnetImport.update({
   id: '/jsonnet',
   path: '/jsonnet',
@@ -78,6 +86,12 @@ const HtmlViewerRoute = HtmlViewerImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const Base64Route = Base64Import.update({
+  id: '/base64',
+  path: '/base64',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
@@ -93,6 +107,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/base64': {
+      id: '/base64'
+      path: '/base64'
+      fullPath: '/base64'
+      preLoaderRoute: typeof Base64Import
       parentRoute: typeof rootRoute
     }
     '/html-viewer': {
@@ -114,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/jsonnet'
       fullPath: '/jsonnet'
       preLoaderRoute: typeof JsonnetImport
+      parentRoute: typeof rootRoute
+    }
+    '/jwt-decode': {
+      id: '/jwt-decode'
+      path: '/jwt-decode'
+      fullPath: '/jwt-decode'
+      preLoaderRoute: typeof JwtDecodeImport
       parentRoute: typeof rootRoute
     }
     '/openapi': {
@@ -165,9 +193,11 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/base64': typeof Base64Route
   '/html-viewer': typeof HtmlViewerRoute
   '/json-fmt': typeof JsonFmtRoute
   '/jsonnet': typeof JsonnetRoute
+  '/jwt-decode': typeof JwtDecodeRoute
   '/openapi': typeof OpenapiRoute
   '/sql-fmt': typeof SqlFmtRoute
   '/url-viewer': typeof UrlViewerRoute
@@ -178,9 +208,11 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/base64': typeof Base64Route
   '/html-viewer': typeof HtmlViewerRoute
   '/json-fmt': typeof JsonFmtRoute
   '/jsonnet': typeof JsonnetRoute
+  '/jwt-decode': typeof JwtDecodeRoute
   '/openapi': typeof OpenapiRoute
   '/sql-fmt': typeof SqlFmtRoute
   '/url-viewer': typeof UrlViewerRoute
@@ -192,9 +224,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/base64': typeof Base64Route
   '/html-viewer': typeof HtmlViewerRoute
   '/json-fmt': typeof JsonFmtRoute
   '/jsonnet': typeof JsonnetRoute
+  '/jwt-decode': typeof JwtDecodeRoute
   '/openapi': typeof OpenapiRoute
   '/sql-fmt': typeof SqlFmtRoute
   '/url-viewer': typeof UrlViewerRoute
@@ -207,9 +241,11 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/base64'
     | '/html-viewer'
     | '/json-fmt'
     | '/jsonnet'
+    | '/jwt-decode'
     | '/openapi'
     | '/sql-fmt'
     | '/url-viewer'
@@ -219,9 +255,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/base64'
     | '/html-viewer'
     | '/json-fmt'
     | '/jsonnet'
+    | '/jwt-decode'
     | '/openapi'
     | '/sql-fmt'
     | '/url-viewer'
@@ -231,9 +269,11 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/base64'
     | '/html-viewer'
     | '/json-fmt'
     | '/jsonnet'
+    | '/jwt-decode'
     | '/openapi'
     | '/sql-fmt'
     | '/url-viewer'
@@ -245,9 +285,11 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  Base64Route: typeof Base64Route
   HtmlViewerRoute: typeof HtmlViewerRoute
   JsonFmtRoute: typeof JsonFmtRoute
   JsonnetRoute: typeof JsonnetRoute
+  JwtDecodeRoute: typeof JwtDecodeRoute
   OpenapiRoute: typeof OpenapiRoute
   SqlFmtRoute: typeof SqlFmtRoute
   UrlViewerRoute: typeof UrlViewerRoute
@@ -258,9 +300,11 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  Base64Route: Base64Route,
   HtmlViewerRoute: HtmlViewerRoute,
   JsonFmtRoute: JsonFmtRoute,
   JsonnetRoute: JsonnetRoute,
+  JwtDecodeRoute: JwtDecodeRoute,
   OpenapiRoute: OpenapiRoute,
   SqlFmtRoute: SqlFmtRoute,
   UrlViewerRoute: UrlViewerRoute,
@@ -280,9 +324,11 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/base64",
         "/html-viewer",
         "/json-fmt",
         "/jsonnet",
+        "/jwt-decode",
         "/openapi",
         "/sql-fmt",
         "/url-viewer",
@@ -294,6 +340,9 @@ export const routeTree = rootRoute
     "/": {
       "filePath": "index.tsx"
     },
+    "/base64": {
+      "filePath": "base64.tsx"
+    },
     "/html-viewer": {
       "filePath": "html-viewer.tsx"
     },
@@ -302,6 +351,9 @@ export const routeTree = rootRoute
     },
     "/jsonnet": {
       "filePath": "jsonnet.tsx"
+    },
+    "/jwt-decode": {
+      "filePath": "jwt-decode.tsx"
     },
     "/openapi": {
       "filePath": "openapi.tsx"

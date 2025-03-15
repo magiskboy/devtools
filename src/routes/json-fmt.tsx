@@ -29,11 +29,11 @@ function RouteComponent() {
 
   return (
     <div className="columns">
-      <div className="column is-three-quarters">
+      <div className="column is-10">
         <Editor extensions={[json()]} value={jsonValue} onChange={setJSONValue} />
       </div>
 
-      <div className="column is-flex is-flex-direction-column">
+      <div className="column is-flex is-flex-direction-column is-2">
         <div className="field">
           <label className="label">Tab Width</label>
           <div className="control">

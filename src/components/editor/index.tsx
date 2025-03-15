@@ -22,14 +22,9 @@ const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) => {
         theme={isDarkMode() ? 'dark' : 'light'}
         style={{overflow: 'scroll'}}
         ref={(ref) => {
-          if (ref?.editor) {
-            ref.editor.style.minHeight = '100%';
-          }
-
           const width = ref?.editor?.clientWidth;
-          const height = ref?.editor?.clientHeight;
-          if (width && height && ref.editor) {
-            ref.editor.style.height = `${height}px`
+          if (width && ref.editor) {
+            ref.editor.style.height = '100%';
             ref.editor.style.width = `${width}px`;
           }
 

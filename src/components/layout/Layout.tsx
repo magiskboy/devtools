@@ -8,7 +8,7 @@ export const Layout: React.FC<PropsWithChildren> = ({children}) => {
   const isHome = pathname === '/';
 
   return (
-    <div className="container">
+    <div className="container pt-6">
       {!isHome && <Navbar />}
       {children}
       <Footer />

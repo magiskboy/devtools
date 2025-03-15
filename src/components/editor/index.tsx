@@ -7,7 +7,7 @@ import styles from './index.module.css';
 const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) => {
   const { title, extensions, className,...rest } = props;
   return (
-    <div>
+    <div className="h-100">
       {title && <p className="is-size-6 mb-2">{title}</p>}
       <CodeMirror 
         extensions={[
@@ -18,13 +18,13 @@ const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) => {
           ...(extensions || [])
         ]} 
         className={`${className || ''} ${styles.editor}`}
-        height='600px'
-        maxHeight='600px'
+        height='100%'
         theme={isDarkMode() ? 'dark' : 'light'}
         style={{overflow: 'scroll'}}
         ref={(ref) => {
           const width = ref?.editor?.clientWidth;
           if (width && ref.editor) {
+            ref.editor.style.height = '100%';
             ref.editor.style.width = `${width}px`;
           }
 

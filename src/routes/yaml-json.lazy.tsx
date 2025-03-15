@@ -37,7 +37,7 @@ function RouteComponent() {
   }
 
   return (
-    <div className="columns">
+    <div className="columns h-100">
       <div className="column">
         <Editor
           value={jsonValue}

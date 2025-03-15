@@ -11,11 +11,14 @@ export const Layout: React.FC<PropsWithChildren> = ({children}) => {
   return (
     <div className={cls({
       'container': true,
-      'pt-6': isHome
+      'pt-6': isHome,
+      'is-flex': true,
+      'is-flex-direction-column': true,
+      'h-100': true,
     })}>
-      {!isHome && <Navbar />}
-      {children}
-      <Footer />
+      {!isHome && <Navbar className="mb-5" />}
+      <div className="is-flex-grow-1">{children}</div>
+      <div className="py-4"><Footer /></div>
     </div>
   )
 }

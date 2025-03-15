@@ -31,8 +31,8 @@ function RouteComponent() {
   }
 
   return (
-    <div className="">
-      <div className="columns">
+    <div className="h-100">
+      <div className="columns h-100">
         <div className="column">
           <p className="is-size-5 mb-2">Data</p>
           <Editor value={data} onChange={onChangeData} />

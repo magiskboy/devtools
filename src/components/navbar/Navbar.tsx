@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router"
 import { useMenuContext } from '../../contexts/menu';
 
-export const Navbar = () => {
+export const Navbar: React.FC<{className?: string}> = ({className}) => {
   const { title } = useMenuContext();
 
   return (
-    <nav className="navbar is-transparent mb-5">
+    <nav className={`navbar is-transparent ${className}`}>
       <div className="navbar-brand">
         <Link className="navbar-item" to="/">
           <img src="/favicon.png" height={32} width={32} />

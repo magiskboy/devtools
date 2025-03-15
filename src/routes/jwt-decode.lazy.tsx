@@ -39,17 +39,15 @@ function RouteComponent() {
 
 
   return (
-    <div>
-      <div className="columns">
-        <div className="column">
-          <Editor title="JWT" value={jwt} onChange={setJwt} />
-        </div>
-        <div className="column">
-          <div className="fixed-grid has-1-cols">
-            <div className="grid is-gap-3">
-              <Editor title="Data" extensions={[json()]} readOnly value={data} height={undefined} className="cell" />
-              <Editor title="Header" extensions={[json()]} readOnly value={header} height={undefined} className="cell" />
-            </div>
+    <div className="columns h-100">
+      <div className="column">
+        <Editor title="JWT" value={jwt} onChange={setJwt} />
+      </div>
+      <div className="column">
+        <div className="fixed-grid has-1-cols">
+          <div className="grid is-gap-3">
+            <Editor title="Data" extensions={[json()]} readOnly value={data} height={undefined} className="cell" />
+            <Editor title="Header" extensions={[json()]} readOnly value={header} height={undefined} className="cell" />
           </div>
         </div>
       </div>

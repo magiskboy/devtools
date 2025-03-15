@@ -28,7 +28,7 @@ function RouteComponent() {
   }
 
   return (
-    <div className="columns">
+    <div className="columns h-100">
       <div className="column is-10">
         <Editor extensions={[json()]} value={jsonValue} onChange={setJSONValue} />
       </div>

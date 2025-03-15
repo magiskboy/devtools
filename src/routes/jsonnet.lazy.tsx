@@ -35,8 +35,8 @@ function RouteComponent() {
   }
 
   return (
-    <div className="is-flex columns">
-      <div className="column">
+    <div className="columns h-100">
+      <div className="column h-100">
         <Editor
           title="Jsonnet"
           value={code} 
@@ -44,7 +44,7 @@ function RouteComponent() {
           onChange={onChange} 
         />
       </div>
-      <div className="column">
+      <div className="column h-100">
         <Editor
           title="JSON"
           readOnly

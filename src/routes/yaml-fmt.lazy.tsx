@@ -51,7 +51,7 @@ function RouteComponent() {
   }
 
   return (
-    <div className="columns">
+    <div className="columns h-100">
       <div className="column is-three-quarters">
         <Editor extensions={[StreamLanguage.define(yaml)]} value={yamlValue} onChange={handleChangeYAMLValue} />
       </div>

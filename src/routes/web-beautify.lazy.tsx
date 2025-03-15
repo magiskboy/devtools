@@ -74,38 +74,36 @@ function RouteComponent() {
 
 
   return (
-    <div>
-      <div className="columns">
-        <div className="column is-10">
-          <Editor extensions={codeMirrorExtensions} onChange={onCodeChange} value={code} />
-        </div>
-
-        <div className="column is-2">
-          <form onChange={onChange} onSubmit={onSubmit}>
-            <div className="field">
-              <label className="label">Language</label>
-              <div className="control">
-                <div className="select is-fullwidth">
-                  <select name="language">
-                    {SUPPORTED_LANGS.map(lang => <option key={lang}>{lang}</option>)}
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div className="field">
-              <label className="label">Ident Size</label>
-              <div className="control">
-                <input className="input" type="number" min={1} max={8} name="indentSize" defaultValue={setting.indentSize} value={setting.indentSize} />
-              </div>
-            </div>
-
-            <div className="control">
-              <button className="button is-fullwidth is-primary">Beautify</button>
-            </div>
-          </form>
-        </div> 
+    <div className="columns h-100">
+      <div className="column is-10">
+        <Editor extensions={codeMirrorExtensions} onChange={onCodeChange} value={code} />
       </div>
+
+      <div className="column is-2">
+        <form onChange={onChange} onSubmit={onSubmit}>
+          <div className="field">
+            <label className="label">Language</label>
+            <div className="control">
+              <div className="select is-fullwidth">
+                <select name="language">
+                  {SUPPORTED_LANGS.map(lang => <option key={lang}>{lang}</option>)}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Ident Size</label>
+            <div className="control">
+              <input className="input" type="number" min={1} max={8} name="indentSize" defaultValue={setting.indentSize} value={setting.indentSize} />
+            </div>
+          </div>
+
+          <div className="control">
+            <button className="button is-fullwidth is-primary">Beautify</button>
+          </div>
+        </form>
+      </div> 
     </div>
   );
 }

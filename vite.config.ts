@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
   const siteUrl = 'https://devtools.nkthanh.dev'
   const routes = ROUTE_CONFIG.reduce((prev, curr) => ({
     ...prev,
-    [`${siteUrl}${curr.path}`]: {
+    [curr.path]: {
       changeFrequency: 'daily'
     }
   }), {});

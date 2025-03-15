@@ -1,10 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react';
 import { json } from "@codemirror/lang-json";
 import { useMenuContext } from '../contexts/menu';
 import Editor from "../components/editor";
 
-export const Route = createFileRoute('/json-fmt')({
+export const Route = createLazyFileRoute('/json-fmt')({
   component: RouteComponent,
 })
 

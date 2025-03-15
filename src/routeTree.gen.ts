@@ -8,89 +8,94 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
+import { createFileRoute } from '@tanstack/react-router'
+
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as YamlJsonImport } from './routes/yaml-json'
-import { Route as YamlFmtImport } from './routes/yaml-fmt'
-import { Route as WebBeautifyImport } from './routes/web-beautify'
-import { Route as UrlViewerImport } from './routes/url-viewer'
-import { Route as SqlFmtImport } from './routes/sql-fmt'
-import { Route as OpenapiImport } from './routes/openapi'
-import { Route as JwtDecodeImport } from './routes/jwt-decode'
-import { Route as JsonnetImport } from './routes/jsonnet'
-import { Route as JsonFmtImport } from './routes/json-fmt'
-import { Route as HtmlViewerImport } from './routes/html-viewer'
-import { Route as Base64Import } from './routes/base64'
 import { Route as IndexImport } from './routes/index'
+
+// Create Virtual Routes
+
+const YamlJsonLazyImport = createFileRoute('/yaml-json')()
+const YamlFmtLazyImport = createFileRoute('/yaml-fmt')()
+const WebBeautifyLazyImport = createFileRoute('/web-beautify')()
+const UrlViewerLazyImport = createFileRoute('/url-viewer')()
+const SqlFmtLazyImport = createFileRoute('/sql-fmt')()
+const OpenapiLazyImport = createFileRoute('/openapi')()
+const JwtDecodeLazyImport = createFileRoute('/jwt-decode')()
+const JsonnetLazyImport = createFileRoute('/jsonnet')()
+const JsonFmtLazyImport = createFileRoute('/json-fmt')()
+const HtmlLazyImport = createFileRoute('/html')()
+const Base64LazyImport = createFileRoute('/base64')()
 
 // Create/Update Routes
 
-const YamlJsonRoute = YamlJsonImport.update({
+const YamlJsonLazyRoute = YamlJsonLazyImport.update({
   id: '/yaml-json',
   path: '/yaml-json',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/yaml-json.lazy').then((d) => d.Route))
 
-const YamlFmtRoute = YamlFmtImport.update({
+const YamlFmtLazyRoute = YamlFmtLazyImport.update({
   id: '/yaml-fmt',
   path: '/yaml-fmt',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/yaml-fmt.lazy').then((d) => d.Route))
 
-const WebBeautifyRoute = WebBeautifyImport.update({
+const WebBeautifyLazyRoute = WebBeautifyLazyImport.update({
   id: '/web-beautify',
   path: '/web-beautify',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/web-beautify.lazy').then((d) => d.Route))
 
-const UrlViewerRoute = UrlViewerImport.update({
+const UrlViewerLazyRoute = UrlViewerLazyImport.update({
   id: '/url-viewer',
   path: '/url-viewer',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/url-viewer.lazy').then((d) => d.Route))
 
-const SqlFmtRoute = SqlFmtImport.update({
+const SqlFmtLazyRoute = SqlFmtLazyImport.update({
   id: '/sql-fmt',
   path: '/sql-fmt',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/sql-fmt.lazy').then((d) => d.Route))
 
-const OpenapiRoute = OpenapiImport.update({
+const OpenapiLazyRoute = OpenapiLazyImport.update({
   id: '/openapi',
   path: '/openapi',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/openapi.lazy').then((d) => d.Route))
 
-const JwtDecodeRoute = JwtDecodeImport.update({
+const JwtDecodeLazyRoute = JwtDecodeLazyImport.update({
   id: '/jwt-decode',
   path: '/jwt-decode',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/jwt-decode.lazy').then((d) => d.Route))
 
-const JsonnetRoute = JsonnetImport.update({
+const JsonnetLazyRoute = JsonnetLazyImport.update({
   id: '/jsonnet',
   path: '/jsonnet',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/jsonnet.lazy').then((d) => d.Route))
 
-const JsonFmtRoute = JsonFmtImport.update({
+const JsonFmtLazyRoute = JsonFmtLazyImport.update({
   id: '/json-fmt',
   path: '/json-fmt',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/json-fmt.lazy').then((d) => d.Route))
 
-const HtmlViewerRoute = HtmlViewerImport.update({
-  id: '/html-viewer',
-  path: '/html-viewer',
+const HtmlLazyRoute = HtmlLazyImport.update({
+  id: '/html',
+  path: '/html',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/html.lazy').then((d) => d.Route))
 
-const Base64Route = Base64Import.update({
+const Base64LazyRoute = Base64LazyImport.update({
   id: '/base64',
   path: '/base64',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/base64.lazy').then((d) => d.Route))
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -113,77 +118,77 @@ declare module '@tanstack/react-router' {
       id: '/base64'
       path: '/base64'
       fullPath: '/base64'
-      preLoaderRoute: typeof Base64Import
+      preLoaderRoute: typeof Base64LazyImport
       parentRoute: typeof rootRoute
     }
-    '/html-viewer': {
-      id: '/html-viewer'
-      path: '/html-viewer'
-      fullPath: '/html-viewer'
-      preLoaderRoute: typeof HtmlViewerImport
+    '/html': {
+      id: '/html'
+      path: '/html'
+      fullPath: '/html'
+      preLoaderRoute: typeof HtmlLazyImport
       parentRoute: typeof rootRoute
     }
     '/json-fmt': {
       id: '/json-fmt'
       path: '/json-fmt'
       fullPath: '/json-fmt'
-      preLoaderRoute: typeof JsonFmtImport
+      preLoaderRoute: typeof JsonFmtLazyImport
       parentRoute: typeof rootRoute
     }
     '/jsonnet': {
       id: '/jsonnet'
       path: '/jsonnet'
       fullPath: '/jsonnet'
-      preLoaderRoute: typeof JsonnetImport
+      preLoaderRoute: typeof JsonnetLazyImport
       parentRoute: typeof rootRoute
     }
     '/jwt-decode': {
       id: '/jwt-decode'
       path: '/jwt-decode'
       fullPath: '/jwt-decode'
-      preLoaderRoute: typeof JwtDecodeImport
+      preLoaderRoute: typeof JwtDecodeLazyImport
       parentRoute: typeof rootRoute
     }
     '/openapi': {
       id: '/openapi'
       path: '/openapi'
       fullPath: '/openapi'
-      preLoaderRoute: typeof OpenapiImport
+      preLoaderRoute: typeof OpenapiLazyImport
       parentRoute: typeof rootRoute
     }
     '/sql-fmt': {
       id: '/sql-fmt'
       path: '/sql-fmt'
       fullPath: '/sql-fmt'
-      preLoaderRoute: typeof SqlFmtImport
+      preLoaderRoute: typeof SqlFmtLazyImport
       parentRoute: typeof rootRoute
     }
     '/url-viewer': {
       id: '/url-viewer'
       path: '/url-viewer'
       fullPath: '/url-viewer'
-      preLoaderRoute: typeof UrlViewerImport
+      preLoaderRoute: typeof UrlViewerLazyImport
       parentRoute: typeof rootRoute
     }
     '/web-beautify': {
       id: '/web-beautify'
       path: '/web-beautify'
       fullPath: '/web-beautify'
-      preLoaderRoute: typeof WebBeautifyImport
+      preLoaderRoute: typeof WebBeautifyLazyImport
       parentRoute: typeof rootRoute
     }
     '/yaml-fmt': {
       id: '/yaml-fmt'
       path: '/yaml-fmt'
       fullPath: '/yaml-fmt'
-      preLoaderRoute: typeof YamlFmtImport
+      preLoaderRoute: typeof YamlFmtLazyImport
       parentRoute: typeof rootRoute
     }
     '/yaml-json': {
       id: '/yaml-json'
       path: '/yaml-json'
       fullPath: '/yaml-json'
-      preLoaderRoute: typeof YamlJsonImport
+      preLoaderRoute: typeof YamlJsonLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -193,48 +198,48 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/base64': typeof Base64Route
-  '/html-viewer': typeof HtmlViewerRoute
-  '/json-fmt': typeof JsonFmtRoute
-  '/jsonnet': typeof JsonnetRoute
-  '/jwt-decode': typeof JwtDecodeRoute
-  '/openapi': typeof OpenapiRoute
-  '/sql-fmt': typeof SqlFmtRoute
-  '/url-viewer': typeof UrlViewerRoute
-  '/web-beautify': typeof WebBeautifyRoute
-  '/yaml-fmt': typeof YamlFmtRoute
-  '/yaml-json': typeof YamlJsonRoute
+  '/base64': typeof Base64LazyRoute
+  '/html': typeof HtmlLazyRoute
+  '/json-fmt': typeof JsonFmtLazyRoute
+  '/jsonnet': typeof JsonnetLazyRoute
+  '/jwt-decode': typeof JwtDecodeLazyRoute
+  '/openapi': typeof OpenapiLazyRoute
+  '/sql-fmt': typeof SqlFmtLazyRoute
+  '/url-viewer': typeof UrlViewerLazyRoute
+  '/web-beautify': typeof WebBeautifyLazyRoute
+  '/yaml-fmt': typeof YamlFmtLazyRoute
+  '/yaml-json': typeof YamlJsonLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/base64': typeof Base64Route
-  '/html-viewer': typeof HtmlViewerRoute
-  '/json-fmt': typeof JsonFmtRoute
-  '/jsonnet': typeof JsonnetRoute
-  '/jwt-decode': typeof JwtDecodeRoute
-  '/openapi': typeof OpenapiRoute
-  '/sql-fmt': typeof SqlFmtRoute
-  '/url-viewer': typeof UrlViewerRoute
-  '/web-beautify': typeof WebBeautifyRoute
-  '/yaml-fmt': typeof YamlFmtRoute
-  '/yaml-json': typeof YamlJsonRoute
+  '/base64': typeof Base64LazyRoute
+  '/html': typeof HtmlLazyRoute
+  '/json-fmt': typeof JsonFmtLazyRoute
+  '/jsonnet': typeof JsonnetLazyRoute
+  '/jwt-decode': typeof JwtDecodeLazyRoute
+  '/openapi': typeof OpenapiLazyRoute
+  '/sql-fmt': typeof SqlFmtLazyRoute
+  '/url-viewer': typeof UrlViewerLazyRoute
+  '/web-beautify': typeof WebBeautifyLazyRoute
+  '/yaml-fmt': typeof YamlFmtLazyRoute
+  '/yaml-json': typeof YamlJsonLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/base64': typeof Base64Route
-  '/html-viewer': typeof HtmlViewerRoute
-  '/json-fmt': typeof JsonFmtRoute
-  '/jsonnet': typeof JsonnetRoute
-  '/jwt-decode': typeof JwtDecodeRoute
-  '/openapi': typeof OpenapiRoute
-  '/sql-fmt': typeof SqlFmtRoute
-  '/url-viewer': typeof UrlViewerRoute
-  '/web-beautify': typeof WebBeautifyRoute
-  '/yaml-fmt': typeof YamlFmtRoute
-  '/yaml-json': typeof YamlJsonRoute
+  '/base64': typeof Base64LazyRoute
+  '/html': typeof HtmlLazyRoute
+  '/json-fmt': typeof JsonFmtLazyRoute
+  '/jsonnet': typeof JsonnetLazyRoute
+  '/jwt-decode': typeof JwtDecodeLazyRoute
+  '/openapi': typeof OpenapiLazyRoute
+  '/sql-fmt': typeof SqlFmtLazyRoute
+  '/url-viewer': typeof UrlViewerLazyRoute
+  '/web-beautify': typeof WebBeautifyLazyRoute
+  '/yaml-fmt': typeof YamlFmtLazyRoute
+  '/yaml-json': typeof YamlJsonLazyRoute
 }
 
 export interface FileRouteTypes {
@@ -242,7 +247,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/base64'
-    | '/html-viewer'
+    | '/html'
     | '/json-fmt'
     | '/jsonnet'
     | '/jwt-decode'
@@ -256,7 +261,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/base64'
-    | '/html-viewer'
+    | '/html'
     | '/json-fmt'
     | '/jsonnet'
     | '/jwt-decode'
@@ -270,7 +275,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/base64'
-    | '/html-viewer'
+    | '/html'
     | '/json-fmt'
     | '/jsonnet'
     | '/jwt-decode'
@@ -285,32 +290,32 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  Base64Route: typeof Base64Route
-  HtmlViewerRoute: typeof HtmlViewerRoute
-  JsonFmtRoute: typeof JsonFmtRoute
-  JsonnetRoute: typeof JsonnetRoute
-  JwtDecodeRoute: typeof JwtDecodeRoute
-  OpenapiRoute: typeof OpenapiRoute
-  SqlFmtRoute: typeof SqlFmtRoute
-  UrlViewerRoute: typeof UrlViewerRoute
-  WebBeautifyRoute: typeof WebBeautifyRoute
-  YamlFmtRoute: typeof YamlFmtRoute
-  YamlJsonRoute: typeof YamlJsonRoute
+  Base64LazyRoute: typeof Base64LazyRoute
+  HtmlLazyRoute: typeof HtmlLazyRoute
+  JsonFmtLazyRoute: typeof JsonFmtLazyRoute
+  JsonnetLazyRoute: typeof JsonnetLazyRoute
+  JwtDecodeLazyRoute: typeof JwtDecodeLazyRoute
+  OpenapiLazyRoute: typeof OpenapiLazyRoute
+  SqlFmtLazyRoute: typeof SqlFmtLazyRoute
+  UrlViewerLazyRoute: typeof UrlViewerLazyRoute
+  WebBeautifyLazyRoute: typeof WebBeautifyLazyRoute
+  YamlFmtLazyRoute: typeof YamlFmtLazyRoute
+  YamlJsonLazyRoute: typeof YamlJsonLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  Base64Route: Base64Route,
-  HtmlViewerRoute: HtmlViewerRoute,
-  JsonFmtRoute: JsonFmtRoute,
-  JsonnetRoute: JsonnetRoute,
-  JwtDecodeRoute: JwtDecodeRoute,
-  OpenapiRoute: OpenapiRoute,
-  SqlFmtRoute: SqlFmtRoute,
-  UrlViewerRoute: UrlViewerRoute,
-  WebBeautifyRoute: WebBeautifyRoute,
-  YamlFmtRoute: YamlFmtRoute,
-  YamlJsonRoute: YamlJsonRoute,
+  Base64LazyRoute: Base64LazyRoute,
+  HtmlLazyRoute: HtmlLazyRoute,
+  JsonFmtLazyRoute: JsonFmtLazyRoute,
+  JsonnetLazyRoute: JsonnetLazyRoute,
+  JwtDecodeLazyRoute: JwtDecodeLazyRoute,
+  OpenapiLazyRoute: OpenapiLazyRoute,
+  SqlFmtLazyRoute: SqlFmtLazyRoute,
+  UrlViewerLazyRoute: UrlViewerLazyRoute,
+  WebBeautifyLazyRoute: WebBeautifyLazyRoute,
+  YamlFmtLazyRoute: YamlFmtLazyRoute,
+  YamlJsonLazyRoute: YamlJsonLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -325,7 +330,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/base64",
-        "/html-viewer",
+        "/html",
         "/json-fmt",
         "/jsonnet",
         "/jwt-decode",
@@ -341,37 +346,37 @@ export const routeTree = rootRoute
       "filePath": "index.tsx"
     },
     "/base64": {
-      "filePath": "base64.tsx"
+      "filePath": "base64.lazy.tsx"
     },
-    "/html-viewer": {
-      "filePath": "html-viewer.tsx"
+    "/html": {
+      "filePath": "html.lazy.tsx"
     },
     "/json-fmt": {
-      "filePath": "json-fmt.tsx"
+      "filePath": "json-fmt.lazy.tsx"
     },
     "/jsonnet": {
-      "filePath": "jsonnet.tsx"
+      "filePath": "jsonnet.lazy.tsx"
     },
     "/jwt-decode": {
-      "filePath": "jwt-decode.tsx"
+      "filePath": "jwt-decode.lazy.tsx"
     },
     "/openapi": {
-      "filePath": "openapi.tsx"
+      "filePath": "openapi.lazy.tsx"
     },
     "/sql-fmt": {
-      "filePath": "sql-fmt.tsx"
+      "filePath": "sql-fmt.lazy.tsx"
     },
     "/url-viewer": {
-      "filePath": "url-viewer.tsx"
+      "filePath": "url-viewer.lazy.tsx"
     },
     "/web-beautify": {
-      "filePath": "web-beautify.tsx"
+      "filePath": "web-beautify.lazy.tsx"
     },
     "/yaml-fmt": {
-      "filePath": "yaml-fmt.tsx"
+      "filePath": "yaml-fmt.lazy.tsx"
     },
     "/yaml-json": {
-      "filePath": "yaml-json.tsx"
+      "filePath": "yaml-json.lazy.tsx"
     }
   }
 }

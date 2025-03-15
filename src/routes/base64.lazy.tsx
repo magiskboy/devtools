@@ -1,8 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 import Editor from '../components/editor';
 import React, { useState } from 'react';
 
-export const Route = createFileRoute('/base64')({
+export const Route = createLazyFileRoute('/base64')({
   component: RouteComponent,
 })
 

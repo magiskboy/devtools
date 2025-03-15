@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from "react";
 import { useMenuContext } from "../contexts/menu";
 import Editor from "../components/editor";
@@ -6,7 +6,7 @@ import { StreamLanguage } from "@codemirror/language";
 import { yaml } from "@codemirror/legacy-modes/mode/yaml";
 import yamljs from 'js-yaml';
 
-export const Route = createFileRoute('/yaml-fmt')({
+export const Route = createLazyFileRoute('/yaml-fmt')({
   component: RouteComponent,
 })
 

@@ -1,8 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react';
 import { useMenuContext } from '../contexts/menu';
 
-export const Route = createFileRoute('/url-viewer')({
+export const Route = createLazyFileRoute('/url-viewer')({
   component: RouteComponent,
 })
 

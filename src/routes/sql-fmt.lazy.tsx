@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 import { sql } from '@codemirror/lang-sql';
 import { useEffect, useState } from 'react';
 import { format, FunctionCase, KeywordCase, SqlLanguage, supportedDialects } from 'sql-formatter';
@@ -110,7 +110,7 @@ function RouteComponent() {
   )
 }
 
-export const Route = createFileRoute('/sql-fmt')({
+export const Route = createLazyFileRoute('/sql-fmt')({
   component: RouteComponent,
 })
 

@@ -1,4 +1,5 @@
-import CodeMirror, { ReactCodeMirrorProps } from '@uiw/react-codemirror';
+import CodeMirror from '@uiw/react-codemirror';
+import type { ReactCodeMirrorProps } from '@uiw/react-codemirror';
 import { basicSetup } from '@uiw/codemirror-extensions-basic-setup';
 import { isDarkMode } from '../../libs/helpers';
 import styles from './index.module.css';

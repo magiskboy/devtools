@@ -1,11 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 import { json } from '@codemirror/lang-json';
 import Editor from '../components/editor';
 import { useEffect, useState } from 'react';
 import { InvalidTokenError, jwtDecode } from 'jwt-decode';
 import { useMenuContext } from '../contexts/menu';
 
-export const Route = createFileRoute('/jwt-decode')({
+export const Route = createLazyFileRoute('/jwt-decode')({
   component: RouteComponent,
 })
 

@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 import { useMenuContext } from '../contexts/menu';
 import { useEffect, useState } from 'react';
 import Editor from '../components/editor';
@@ -9,7 +9,7 @@ import {css} from '@codemirror/legacy-modes/mode/css';
 import { LanguageSupport, StreamLanguage } from '@codemirror/language';
 import { html_beautify, js_beautify, css_beautify } from 'js-beautify';
 
-export const Route = createFileRoute('/web-beautify')({
+export const Route = createLazyFileRoute('/web-beautify')({
   component: RouteComponent,
 });
 

@@ -1,10 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 import { useState } from "react";
 import { html } from '@codemirror/lang-html';
 import Editor from "../components/editor";
 import { html_beautify } from 'js-beautify';
 
-export const Route = createFileRoute('/html-viewer')({
+export const Route = createLazyFileRoute('/html')({
   component: RouteComponent,
 })
 

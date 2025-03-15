@@ -64,3 +64,4 @@ const DEFAULT_JSONNET = `// Edit me!
   },
   person2: self.person1 { name: "Bob" },
 }`
+

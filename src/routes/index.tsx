@@ -17,8 +17,7 @@ function RouteComponent() {
         </div>
       </div>
 
-      <div className="fixed-grid has-4-cols">
-        <div className="grid">
+        <div className="grid is-col-min-12 px-5">
           {ROUTE_CONFIG.map(tool => (
             <div className="cell" key={tool.name}>
               <div className="card">
@@ -34,7 +33,6 @@ function RouteComponent() {
             </div>
           ))}
         </div>
-      </div>
     </div>
   )
 }

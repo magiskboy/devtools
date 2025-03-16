@@ -35,16 +35,16 @@ function RouteComponent() {
   }
 
   return (
-    <div className="columns h-100">
-      <div className="column h-100">
+    <div className="grid is-col-min-12 is-gap-5 ">
+      <div className="cell h-100">
         <Editor
           title="Jsonnet"
-          value={code} 
+          value={code}
           extensions={[[StreamLanguage.define(jsonnet)]]}
           onChange={onChange} 
         />
       </div>
-      <div className="column h-100">
+      <div className="cell h-100">
         <Editor
           title="JSON"
           readOnly

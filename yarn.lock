@@ -2438,11 +2438,6 @@ vite-bundle-analyzer@^0.17.3:
   resolved "https://registry.yarnpkg.com/vite-bundle-analyzer/-/vite-bundle-analyzer-0.17.3.tgz#46ba60321be6a3dd289c47cbca6315b512b81686"
   integrity sha512-auy3vYMXErXYf78e12cAaaD7JmGaTa0DOipKRKx83KSR4kEttJ416HH/OmmzjWa0XI2AH5f21ax+WkVFPsB0fw==
 
-vite-plugin-tanstack-router-sitemap@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/vite-plugin-tanstack-router-sitemap/-/vite-plugin-tanstack-router-sitemap-1.1.0.tgz#d086f8c6326c3278d952f8b0be721599b4253d91"
-  integrity sha512-TrYXwRDCyiOuX7MRqJ+IhkZ419UdBsXkgyEA7hTWLx1XWLVXeOzEhLUcHwdXSd8zpTw9IBOLmcX7NHPY+Y9vcw==
-
 vite@^6.2.0:
   version "6.2.1"
   resolved "https://registry.yarnpkg.com/vite/-/vite-6.2.1.tgz#ae865d4bb93a11844be1bc647c8b2dd1856ea180"

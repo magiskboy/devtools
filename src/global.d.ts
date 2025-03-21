@@ -1,6 +1,12 @@
 export {};
 
 declare global {
+  interface JqInstance {
+    json(params: object, query: string): object;
+  }
+
+  const jq: Promise<JqInstance>;
+
   class Jsonnet {
     evaluate(code: string): Promise<string>;
   }
@@ -17,6 +23,4 @@ declare module '@tanstack/react-router' {
     router: typeof router
   }
 }
-
-
 

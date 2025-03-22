@@ -1,0 +1,116 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`index 1`] = `
+<div>
+  <div
+    class="container pt-6 is-flex is-flex-direction-column h-100"
+  >
+    <div
+      class="modal"
+      style="justify-content: initial;"
+    >
+      <div
+        class="modal-background"
+      />
+      <div
+        class="modal-content"
+        style="position: absolute; margin-top: 10%;"
+      >
+        <div
+          class="box"
+          style="min-height: 400px;"
+        >
+          <div
+            class="control"
+          >
+            <input
+              class="input"
+              placeholder="Search..."
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="mt-4"
+          >
+            <div
+              class="box"
+            >
+              <a
+                href="/jsonnet"
+              >
+                Jsonnet
+              </a>
+            </div>
+            <div
+              class="box"
+            >
+              <a
+                href="/jwt-decode"
+              >
+                JWT decode
+              </a>
+            </div>
+            <div
+              class="box"
+            >
+              <a
+                href="/sql-fmt"
+              >
+                SQL fmt
+              </a>
+            </div>
+            <div
+              class="box"
+            >
+              <a
+                href="/yaml-json"
+              >
+                YAML - JSON
+              </a>
+            </div>
+            <div
+              class="box"
+            >
+              <a
+                href="/yaml-fmt"
+              >
+                YAML fmt
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="modal-close is-large"
+      />
+    </div>
+    <div
+      class="py-4"
+    >
+      <footer
+        class="block py-4"
+      >
+        <div
+          class="content has-text-centered"
+        >
+          <p>
+            My IP: 
+          </p>
+          <p>
+            All data and HTTP requests to fetch JSON are processed locally in your browser.
+          </p>
+          Copyright © 
+          2025
+           - 
+          <a
+            href="https://nkthanh.dev"
+          >
+            nkthanh.dev
+          </a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+`;

@@ -5,6 +5,7 @@
     "lib": ["ES2023"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "types": ["@vitest/browser/providers/playwright"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

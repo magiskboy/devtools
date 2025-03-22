@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { format, FunctionCase, KeywordCase, SqlLanguage, supportedDialects } from 'sql-formatter';
 import Editor from '../components/editor';
 import { useMenuContext } from '../contexts/menu';
+import { ConfigForm } from '../components/config-form';
 
 
 function RouteComponent() {
@@ -48,63 +49,65 @@ function RouteComponent() {
   }
 
   return (
-    <div className="block columns h-100">
-      <div className="column is-10">
+    <div className="block columns">
+      <div className="column is-9">
         <Editor title="SQL" value={sqlQuery} onChange={onChange} extensions={[sql()]} />
       </div>
-      <div className="column is-2">
-        <form onChange={onChangeSetting} onSubmit={onFormat} className="is-flex is-flex-direction-column">
-          <div className="field">
-            <label className="label">Language</label>
-            <div className="control">
-              <div className="select is-fullwidth">
-                <select name="language" value={setting.language} defaultValue={setting.language}>
-                  {supportedDialects.map((dialect) => (
-                    <option key={dialect} value={dialect}>
-                      {dialect}
-                    </option>))}
-                </select>
+      <div className="column is-3">
+        <ConfigForm title="Settings">
+          <form onChange={onChangeSetting} onSubmit={onFormat} className="is-flex is-flex-direction-column">
+            <div className="field">
+              <label className="label">Language</label>
+              <div className="control">
+                <div className="select is-fullwidth">
+                  <select name="language" value={setting.language} defaultValue={setting.language}>
+                    {supportedDialects.map((dialect) => (
+                      <option key={dialect} value={dialect}>
+                        {dialect}
+                      </option>))}
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="field">
-            <label className="label">Tab width</label>
-            <div className="control">
-              <input type="number" defaultValue={2} value={setting.tabWidth} className="input" name="tabWidth" />
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label">Keyword case</label>
-            <div className="control">
-              <div className="select is-fullwidth">
-                <select name="keywordCase" value={setting.keywordCase} defaultValue={setting.keywordCase}>
-                  <option value="upper">Upper</option>
-                  <option value="lower">Lower</option>
-                  <option value="preserve">Unchanged</option>
-                </select>
+            <div className="field">
+              <label className="label">Tab width</label>
+              <div className="control">
+                <input type="number" defaultValue={2} value={setting.tabWidth} className="input" name="tabWidth" />
               </div>
             </div>
-          </div>
 
-          <div className="field">
-            <label className="label">Function case</label>
-            <div className="control">
-              <div className="select is-fullwidth">
-                <select name="functionCase" id="functionCase" value={setting.functionCase} defaultValue={setting.functionCase}>
-                  <option value="upper">Upper</option>
-                  <option value="lower">Lower</option>
-                  <option value="preserve">Unchanged</option>
-                </select>
+            <div className="field">
+              <label className="label">Keyword case</label>
+              <div className="control">
+                <div className="select is-fullwidth">
+                  <select name="keywordCase" value={setting.keywordCase} defaultValue={setting.keywordCase}>
+                    <option value="upper">Upper</option>
+                    <option value="lower">Lower</option>
+                    <option value="preserve">Unchanged</option>
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="control">
-            <button className="button is-primary is-fullwidth">Format</button>
-          </div>
-        </form>
+            <div className="field">
+              <label className="label">Function case</label>
+              <div className="control">
+                <div className="select is-fullwidth">
+                  <select name="functionCase" id="functionCase" value={setting.functionCase} defaultValue={setting.functionCase}>
+                    <option value="upper">Upper</option>
+                    <option value="lower">Lower</option>
+                    <option value="preserve">Unchanged</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div className="control">
+              <button className="button is-primary is-fullwidth">Format</button>
+            </div>
+          </form>
+        </ConfigForm>
       </div>
     </div>
   )

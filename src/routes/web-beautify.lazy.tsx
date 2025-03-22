@@ -8,6 +8,7 @@ import { javascript } from '@codemirror/lang-javascript';
 import {css} from '@codemirror/legacy-modes/mode/css';
 import { LanguageSupport, StreamLanguage } from '@codemirror/language';
 import { html_beautify, js_beautify, css_beautify } from 'js-beautify';
+import { ConfigForm } from '../components/config-form';
 
 export const Route = createLazyFileRoute('/web-beautify')({
   component: RouteComponent,
@@ -75,34 +76,36 @@ function RouteComponent() {
 
   return (
     <div className="columns h-100">
-      <div className="column is-10">
+      <div className="column is-9">
         <Editor title="CODE" extensions={codeMirrorExtensions} onChange={onCodeChange} value={code} />
       </div>
 
-      <div className="column is-2">
-        <form onChange={onChange} onSubmit={onSubmit}>
-          <div className="field">
-            <label className="label">Language</label>
-            <div className="control">
-              <div className="select is-fullwidth">
-                <select name="language">
-                  {SUPPORTED_LANGS.map(lang => <option key={lang}>{lang}</option>)}
-                </select>
+      <div className="column is-3">
+        <ConfigForm>
+          <form onChange={onChange} onSubmit={onSubmit}>
+            <div className="field">
+              <label className="label">Language</label>
+              <div className="control">
+                <div className="select is-fullwidth">
+                  <select name="language">
+                    {SUPPORTED_LANGS.map(lang => <option key={lang}>{lang}</option>)}
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="field">
-            <label className="label">Ident Size</label>
-            <div className="control">
-              <input className="input" type="number" min={1} max={8} name="indentSize" defaultValue={setting.indentSize} value={setting.indentSize} />
+            <div className="field">
+              <label className="label">Ident Size</label>
+              <div className="control">
+                <input className="input" type="number" min={1} max={8} name="indentSize" defaultValue={setting.indentSize} value={setting.indentSize} />
+              </div>
             </div>
-          </div>
 
-          <div className="control">
-            <button className="button is-fullwidth is-primary">Beautify</button>
-          </div>
-        </form>
+            <div className="control">
+              <button className="button is-fullwidth is-primary">Beautify</button>
+            </div>
+          </form>
+        </ConfigForm>
       </div> 
     </div>
   );

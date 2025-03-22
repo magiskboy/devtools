@@ -5,6 +5,7 @@ import Editor from "../components/editor";
 import { StreamLanguage } from "@codemirror/language";
 import { yaml } from "@codemirror/legacy-modes/mode/yaml";
 import yamljs from 'js-yaml';
+import { ConfigForm } from '../components/config-form';
 
 export const Route = createLazyFileRoute('/yaml-fmt')({
   component: RouteComponent,
@@ -56,51 +57,53 @@ function RouteComponent() {
         <Editor title="YAML" extensions={[StreamLanguage.define(yaml)]} value={yamlValue} onChange={handleChangeYAMLValue} />
       </div>
       <div className="column">
-        <form onChange={onChangeSetting} onSubmit={onFormat} className="is-flex is-flex-direction-column">
-          <div className="field">
-            <label className="label">Indent</label>
-            <div className="control">
-              <input className="input is-fullwidth" type="number" name="indent" defaultValue={setting.indent} min={1} /> 
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label">Quoting Type</label>
-            <div className="control">
-              <div className="select is-fullwidth">
-                <select name="quotingType" defaultValue={setting.quotingType}>
-                  <option value="'">Single quote</option>
-                  <option value='"'>Double quote</option>
-                </select>
+        <ConfigForm>
+          <form onChange={onChangeSetting} onSubmit={onFormat} className="is-flex is-flex-direction-column">
+            <div className="field">
+              <label className="label">Indent</label>
+              <div className="control">
+                <input className="input is-fullwidth" type="number" name="indent" defaultValue={setting.indent} min={1} /> 
               </div>
             </div>
-          </div>
 
-          <div className="field">
-            <label className="checkbox"> 
-              <input type="checkbox" id="forceQuotes" name="forceQuotes" defaultChecked={setting.forceQuotes} />
-              Force Quotes
-            </label>
-          </div>
-
-          <div className="field">
-            <label className="label">Line Width</label>
-            <div className="control">
-              <input className="input" type="number" name="lineWidth" defaultValue={setting.lineWidth} min={80} />
+            <div className="field">
+              <label className="label">Quoting Type</label>
+              <div className="control">
+                <div className="select is-fullwidth">
+                  <select name="quotingType" defaultValue={setting.quotingType}>
+                    <option value="'">Single quote</option>
+                    <option value='"'>Double quote</option>
+                  </select>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="field">
-            <label className="checkbox">
-              <input type="checkbox" name="noArrayIndent" defaultChecked={setting.noArrayIndent} />
-              No Array Indent
-            </label>
-          </div>
+            <div className="field">
+              <label className="checkbox"> 
+                <input type="checkbox" id="forceQuotes" name="forceQuotes" defaultChecked={setting.forceQuotes} />
+                Force Quotes
+              </label>
+            </div>
 
-          <div className="control">
-            <button className="button is-primary is-fullwidth">Format</button>
-          </div>
-        </form>
+            <div className="field">
+              <label className="label">Line Width</label>
+              <div className="control">
+                <input className="input" type="number" name="lineWidth" defaultValue={setting.lineWidth} min={80} />
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="checkbox">
+                <input type="checkbox" name="noArrayIndent" defaultChecked={setting.noArrayIndent} />
+                No Array Indent
+              </label>
+            </div>
+
+            <div className="control">
+              <button className="button is-primary is-fullwidth">Format</button>
+            </div>
+          </form>
+        </ConfigForm>
       </div>
     </div>
   )

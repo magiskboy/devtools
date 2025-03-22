@@ -3,7 +3,6 @@ export const ROUTE_CONFIG = [
   { "name": "SQL fmt", "path": "/sql-fmt", "description": "A SQL formatter that structures and beautifies SQL queries for improved readability and maintainability." },
   { "name": "YAML - JSON", "path": "/yaml-json", "description": "A converter that transforms YAML data into JSON format and vice versa for easier interoperability." },
   { "name": "YAML fmt", "path": "/yaml-fmt", "description": "A YAML formatter that organizes and formats YAML documents for better readability and consistency." },
-  { "name": "JSON fmt", "path": "/json-fmt", "description": "A JSON formatter that properly indents and structures JSON data for clarity and readability." },
   { "name": "URL", "path": "/url-viewer", "description": "A tool for decoding and encoding URLs, allowing users to inspect and manipulate URL-encoded strings." },
   { "name": "HTML", "path": "/html", "description": "A viewer that renders and previews raw HTML content, helping users visualize HTML structure and output." },
   // { "name": "OpenAPI", "path": "/openapi", "description": "A viewer and editor for OpenAPI specifications, assisting in designing and documenting RESTful APIs." }

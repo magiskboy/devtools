@@ -31,17 +31,17 @@ function RouteComponent() {
   }
 
   return (
-    <div className="h-100">
-      <div className="columns h-100">
-        <div className="column">
-          <Editor title="DATA" value={data} onChange={onChangeData} />
+    <div className="fixed-grid has-9-cols">
+      <div className="grid">
+        <div className="cell is-col-span-4">
+          <Editor title="Data" value={data} onChange={onChangeData} minHeight='500px' />
         </div>
-        <div className="column is-1 is-flex is-flex-direction-column is-justify-content-center">
+        <div className="cell is-flex is-flex-direction-column is-justify-content-center">
           <button className="button is-primary my-4" onClick={onEncode}>Encode</button>
           <button className="button is-secondary" onClick={onDecode}>Decode</button>
         </div>
-        <div className="column">
-          <Editor title="BASE64" value={b64Data} onChange={onChangeB64Data} />
+        <div className="cell is-col-span-4">
+          <Editor title="Base64" value={b64Data} onChange={onChangeB64Data} />
         </div>
       </div>
     </div>

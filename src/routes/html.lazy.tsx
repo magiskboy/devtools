@@ -3,6 +3,7 @@ import { useState } from "react";
 import { html } from '@codemirror/lang-html';
 import Editor from "../components/editor";
 import { html_beautify } from 'js-beautify';
+import { ConfigForm } from '../components/config-form';
 
 export const Route = createLazyFileRoute('/html')({
   component: RouteComponent,
@@ -40,19 +41,21 @@ function RouteComponent() {
   return (
     <div>
       <div className="columns">
-        <div className="column is-10">
+        <div className="column is-9">
           <Editor title="HTML" onChange={onChange} value={htmlValue} extensions={[html()]} />
         </div>
-        <div className="column is-2">
-          <form onChange={onChangeSetting} onSubmit={onFormat}>
-            <div className="field">
-              <label className="label">Tab Width</label>
-              <div className="control">
-                <input className="input" name="indentSize" type="number" min={0} max={4} defaultValue={setting.indentSize} value={setting.indentSize} />
+        <div className="column is-3">
+          <ConfigForm>
+            <form onChange={onChangeSetting} onSubmit={onFormat}>
+              <div className="field">
+                <label className="label">Tab Width</label>
+                <div className="control">
+                  <input className="input" name="indentSize" type="number" min={0} max={4} defaultValue={setting.indentSize} value={setting.indentSize} />
+                </div>
               </div>
-            </div>
-            <button className="button is-primary is-fullwidth">Format</button>
-          </form>
+              <button className="button is-primary is-fullwidth">Format</button>
+            </form>
+          </ConfigForm>
         </div>
       </div>
 

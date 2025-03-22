@@ -1,9 +1,9 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { json } from '@codemirror/lang-json';
 import { useEffect, useState } from 'react';
-import Editor from '../components/editor';
-import { useMenuContext } from '../contexts/menu';
-import { jqParser } from '../libs/codemirror/jq';
+import { Editor } from '@/components';
+import { useMenuContext } from '@/contexts';
+import { jqParser } from '@/libs/codemirror/jq';
 import { StreamLanguage } from '@codemirror/language';
 
 export const Route = createLazyFileRoute('/jq')({

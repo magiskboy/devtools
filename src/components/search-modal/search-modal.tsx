@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from '@tanstack/react-router';
 import cls from "classnames";
-import { ROUTE_CONFIG } from '../../routes.config';
-import { isTyping } from "../../libs/helpers";
+import { ROUTE_CONFIG } from '@/routes.config';
+import { isTyping } from "@/libs/helpers";
 
 export const SearchModal = () => {
   const [show, setShow] = React.useState(false);

@@ -1,11 +1,10 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from "react";
-import { useMenuContext } from "../contexts/menu";
-import Editor from "../components/editor";
+import { useMenuContext } from "@/contexts";
+import { Editor, SettingForm } from "@/components";
 import { StreamLanguage } from "@codemirror/language";
 import { yaml } from "@codemirror/legacy-modes/mode/yaml";
 import yamljs from 'js-yaml';
-import { ConfigForm } from '../components/config-form';
 
 export const Route = createLazyFileRoute('/yaml-fmt')({
   component: RouteComponent,
@@ -57,7 +56,7 @@ function RouteComponent() {
         <Editor title="YAML" extensions={[StreamLanguage.define(yaml)]} value={yamlValue} onChange={handleChangeYAMLValue} />
       </div>
       <div className="column">
-        <ConfigForm>
+        <SettingForm>
           <form onChange={onChangeSetting} onSubmit={onFormat} className="is-flex is-flex-direction-column">
             <div className="field">
               <label className="label">Indent</label>
@@ -103,7 +102,7 @@ function RouteComponent() {
               <button className="button is-primary is-fullwidth">Format</button>
             </div>
           </form>
-        </ConfigForm>
+        </SettingForm>
       </div>
     </div>
   )

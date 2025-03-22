@@ -1,9 +1,8 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { useState } from "react";
 import { html } from '@codemirror/lang-html';
-import Editor from "../components/editor";
+import { Editor, SettingForm }from "@/components";
 import { html_beautify } from 'js-beautify';
-import { ConfigForm } from '../components/config-form';
 
 export const Route = createLazyFileRoute('/html')({
   component: RouteComponent,
@@ -45,7 +44,7 @@ function RouteComponent() {
           <Editor title="HTML" onChange={onChange} value={htmlValue} extensions={[html()]} />
         </div>
         <div className="column is-3">
-          <ConfigForm>
+          <SettingForm>
             <form onChange={onChangeSetting} onSubmit={onFormat}>
               <div className="field">
                 <label className="label">Tab Width</label>
@@ -55,7 +54,7 @@ function RouteComponent() {
               </div>
               <button className="button is-primary is-fullwidth">Format</button>
             </form>
-          </ConfigForm>
+          </SettingForm>
         </div>
       </div>
 

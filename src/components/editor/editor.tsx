@@ -1,12 +1,12 @@
 import CodeMirror from '@uiw/react-codemirror';
 import type { ReactCodeMirrorProps } from '@uiw/react-codemirror';
 import { basicSetup } from '@uiw/codemirror-extensions-basic-setup';
-import { isDarkMode } from '../../libs/helpers';
-import styles from './index.module.css';
+import { isDarkMode } from '@/libs/helpers';
 import { PiCopySimpleLight } from "react-icons/pi";
+import styles from './editor.module.css';
 
 
-const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) => {
+export const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) => {
   const { title, extensions, className,...rest } = props;
 
   return (
@@ -43,4 +43,3 @@ const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) => {
   )
 }
 
-export default Editor;

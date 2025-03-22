@@ -2,9 +2,8 @@ import { createLazyFileRoute } from '@tanstack/react-router'
 import { sql } from '@codemirror/lang-sql';
 import { useEffect, useState } from 'react';
 import { format, FunctionCase, KeywordCase, SqlLanguage, supportedDialects } from 'sql-formatter';
-import Editor from '../components/editor';
-import { useMenuContext } from '../contexts/menu';
-import { ConfigForm } from '../components/config-form';
+import { Editor, SettingForm } from '@/components';
+import { useMenuContext } from '@/contexts';
 
 
 function RouteComponent() {
@@ -54,7 +53,7 @@ function RouteComponent() {
         <Editor title="SQL" value={sqlQuery} onChange={onChange} extensions={[sql()]} />
       </div>
       <div className="column is-3">
-        <ConfigForm title="Settings">
+        <SettingForm>
           <form onChange={onChangeSetting} onSubmit={onFormat} className="is-flex is-flex-direction-column">
             <div className="field">
               <label className="label">Language</label>
@@ -107,7 +106,7 @@ function RouteComponent() {
               <button className="button is-primary is-fullwidth">Format</button>
             </div>
           </form>
-        </ConfigForm>
+        </SettingForm>
       </div>
     </div>
   )

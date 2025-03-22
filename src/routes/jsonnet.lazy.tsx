@@ -1,10 +1,10 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { json } from '@codemirror/lang-json';
 import { useEffect, useState } from 'react';
-import Editor from '../components/editor';
-import { useMenuContext } from '../contexts/menu';
+import { Editor } from '@/components';
+import { useMenuContext } from '@/contexts';
 import { StreamLanguage } from '@codemirror/language';
-import { jsonnet } from '../libs/codemirror/jsonnet';
+import { jsonnet } from '@/libs/codemirror/jsonnet';
 
 export const Route = createLazyFileRoute('/jsonnet')({
   component: RouteComponent,

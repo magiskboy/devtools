@@ -1,6 +1,6 @@
 import React from "react"
 
-export const ConfigForm: React.FC<React.PropsWithChildren<Props>> = ({children, title, className}) => {
+export const SettingForm: React.FC<React.PropsWithChildren<Props>> = ({children, title, className}) => {
   return (
     <div className="h-100" style={{ border: '1px solid rgba(255,255,255,0.12)' }}>
       <div className="py-3 px-5 is-flex is-justify-content-space-between" style={{ borderBottom: '1px solid rgba(255,255,255,0.12)'}}>

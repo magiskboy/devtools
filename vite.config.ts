@@ -4,6 +4,7 @@ import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
 import { analyzer } from 'vite-bundle-analyzer';
 import { generateSitemap } from 'tanstack-router-sitemap';
 import { ROUTE_CONFIG } from './src/routes.config';
+import path from 'node:path';
 
 
 // https://vite.dev/config/
@@ -17,6 +18,11 @@ export default defineConfig(({ mode }) => {
   }), {});
 
   const config: UserConfig = {
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, './src'),
+      },
+    },
     plugins: [
       generateSitemap({
         siteUrl,

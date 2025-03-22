@@ -1,14 +1,13 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import { useMenuContext } from '../contexts/menu';
+import { useMenuContext } from '@/contexts';
 import { useEffect, useState } from 'react';
-import Editor from '../components/editor';
+import { Editor, SettingForm } from '@/components';
 import { json } from '@codemirror/lang-json';
 import { html } from '@codemirror/lang-html';
 import { javascript } from '@codemirror/lang-javascript';
 import {css} from '@codemirror/legacy-modes/mode/css';
 import { LanguageSupport, StreamLanguage } from '@codemirror/language';
 import { html_beautify, js_beautify, css_beautify } from 'js-beautify';
-import { ConfigForm } from '../components/config-form';
 
 export const Route = createLazyFileRoute('/web-beautify')({
   component: RouteComponent,
@@ -81,7 +80,7 @@ function RouteComponent() {
       </div>
 
       <div className="column is-3">
-        <ConfigForm>
+        <SettingForm>
           <form onChange={onChange} onSubmit={onSubmit}>
             <div className="field">
               <label className="label">Language</label>
@@ -105,7 +104,7 @@ function RouteComponent() {
               <button className="button is-fullwidth is-primary">Beautify</button>
             </div>
           </form>
-        </ConfigForm>
+        </SettingForm>
       </div> 
     </div>
   );

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router"
-import { useMenuContext } from '../../contexts/menu';
+import { useMenuContext } from '@/contexts';
 import { PiGithubLogoLight } from "react-icons/pi";
 
 export const Navbar: React.FC<{className?: string}> = ({className}) => {

@@ -1,0 +1,205 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`web-beautify 1`] = `
+<div>
+  <div
+    class="container is-flex is-flex-direction-column h-100"
+  >
+    <nav
+      class="navbar is-transparent mb-5"
+    >
+      <div
+        class="navbar-brand"
+      >
+        <a
+          class="navbar-item"
+          href="/"
+        >
+          <img
+            height="32"
+            src="/favicon.png"
+            width="32"
+          />
+        </a>
+        <div
+          class="navbar-burger js-burger"
+          data-target="devtoolsNavbar"
+        >
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+      </div>
+      <div
+        class="navbar-menu"
+        id="devtoolsNavbar"
+      >
+        <div
+          class="navbar-start"
+        >
+          <a
+            class="navbar-item"
+            href="/"
+          >
+             
+            DevTools
+             
+          </a>
+        </div>
+        <div
+          class="navbar-end"
+        >
+          <div
+            class="navbar-item"
+          >
+            <div
+              class="field is-grouped"
+            >
+              <p
+                class="control"
+              >
+                <a
+                  href="https://github.com/magiskboy/devtools"
+                  style="display: block;"
+                  target="_blank"
+                >
+                  <span>
+                     Github 
+                  </span>
+                </a>
+              </p>
+            </div>
+          </div>
+          <div
+            class="navbar-item"
+          >
+            <div
+              class="field is-grouped"
+            >
+              <p
+                class="control"
+              >
+                <a
+                  href="https://nkthanh.dev"
+                  target="_blank"
+                >
+                  <span>
+                     About me 
+                  </span>
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="modal"
+      style="justify-content: initial;"
+    >
+      <div
+        class="modal-background"
+      />
+      <div
+        class="modal-content"
+        style="position: absolute; margin-top: 10%;"
+      >
+        <div
+          class="box"
+          style="min-height: 400px;"
+        >
+          <div
+            class="control"
+          >
+            <input
+              class="input"
+              placeholder="Search..."
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="mt-4"
+          >
+            <div
+              class="box"
+            >
+              <a
+                href="/jsonnet"
+              >
+                Jsonnet
+              </a>
+            </div>
+            <div
+              class="box"
+            >
+              <a
+                href="/jwt-decode"
+              >
+                JWT decode
+              </a>
+            </div>
+            <div
+              class="box"
+            >
+              <a
+                href="/sql-fmt"
+              >
+                SQL fmt
+              </a>
+            </div>
+            <div
+              class="box"
+            >
+              <a
+                href="/yaml-json"
+              >
+                YAML - JSON
+              </a>
+            </div>
+            <div
+              class="box"
+            >
+              <a
+                href="/yaml-fmt"
+              >
+                YAML fmt
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="modal-close is-large"
+      />
+    </div>
+    <div
+      class="py-4"
+    >
+      <footer
+        class="block py-4"
+      >
+        <div
+          class="content has-text-centered"
+        >
+          <p>
+            My IP: 
+          </p>
+          <p>
+            All data and HTTP requests to fetch JSON are processed locally in your browser.
+          </p>
+          Copyright © 
+          2025
+           - 
+          <a
+            href="https://nkthanh.dev"
+          >
+            nkthanh.dev
+          </a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+`;

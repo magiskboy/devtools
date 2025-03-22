@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- some tags for SEO -->
+    <meta name="description" content="Explore a suite of essential developer tools, including formatters, converters, and debuggers, designed to streamline your coding workflow.">
+    <meta property="og:title" content="DevTools by NKThanh">
+    <meta property="og:description" content="A suite of essential developer tools to streamline your coding workflow.">
+    <meta property="og:image" content="https://devtools.nkthanh.dev/favicon.png">
+    <meta property="og:url" content="https://devtools.nkthanh.dev/">
+    <meta name="robots" content="index, follow">
+
+    <title>DevTools - Tools for developers</title>
+
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body style='height: 100vh'>
+    <div class='h-100' id='root'></div>
+
+    <script type="module" src="/src/main.tsx"></script>
+
+    <script src="/vendors/jsonnet/jsonnet-web.min.js" async></script>
+    <script src="/vendors/jsonnet/wasm_exec.min.js" async></script>
+    <script src="/vendors/jq/jq.js" async></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YF000XMFJC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-YF000XMFJC');
+    </script>
+  </body>
+</html>

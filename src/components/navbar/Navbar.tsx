@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router"
 import { useMenuContext } from '@/contexts';
-import { PiGithubLogoLight } from "react-icons/pi";
 
 export const Navbar: React.FC<{className?: string}> = ({className}) => {
   const { title } = useMenuContext();
@@ -29,7 +28,7 @@ export const Navbar: React.FC<{className?: string}> = ({className}) => {
             <div className="field is-grouped">
               <p className="control">
                 <a target="_blank" href="https://github.com/magiskboy/devtools" style={{ display: 'block' }}>
-                  <PiGithubLogoLight size={32} />
+                  <span> Github </span>
                 </a>
               </p>
             </div>

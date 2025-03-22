@@ -2,7 +2,6 @@ import CodeMirror from '@uiw/react-codemirror';
 import type { ReactCodeMirrorProps } from '@uiw/react-codemirror';
 import { basicSetup } from '@uiw/codemirror-extensions-basic-setup';
 import { isDarkMode } from '@/libs/helpers';
-import { PiCopySimpleLight } from "react-icons/pi";
 import styles from './editor.module.css';
 
 
@@ -14,7 +13,7 @@ export const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props)
       <div className="py-3 px-5 is-flex is-justify-content-space-between" style={{ borderBottom: '1px solid rgba(255,255,255,0.12)'}}>
         <p className="is-size-6 has-text-weight-bold" style={{ textTransform: 'uppercase' }}>{title}</p>
 
-        <PiCopySimpleLight style={{cursor: 'pointer'}} onClick={() => navigator.clipboard.writeText(rest.value || '')} />
+        <span style={{cursor: 'pointer'}} onClick={() => navigator.clipboard.writeText(rest.value || '')}>Copy</span>
       </div>
       <CodeMirror 
         extensions={[

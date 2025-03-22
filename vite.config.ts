@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => {
         defaultPriority: 0.5,
         routes,
       }),
-      TanStackRouterVite({ target: 'react', autoCodeSplitting: true }),
+      TanStackRouterVite({ target: 'react' }),
       react(),
     ],
   }

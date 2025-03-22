@@ -13,7 +13,6 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
 
 // Create Virtual Routes
 
@@ -22,13 +21,13 @@ const YamlFmtLazyImport = createFileRoute('/yaml-fmt')()
 const WebBeautifyLazyImport = createFileRoute('/web-beautify')()
 const UrlViewerLazyImport = createFileRoute('/url-viewer')()
 const SqlFmtLazyImport = createFileRoute('/sql-fmt')()
-const OpenapiLazyImport = createFileRoute('/openapi')()
 const JwtDecodeLazyImport = createFileRoute('/jwt-decode')()
 const JsonnetLazyImport = createFileRoute('/jsonnet')()
 const JsonFmtLazyImport = createFileRoute('/json-fmt')()
 const JqLazyImport = createFileRoute('/jq')()
 const HtmlLazyImport = createFileRoute('/html')()
 const Base64LazyImport = createFileRoute('/base64')()
+const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
@@ -61,12 +60,6 @@ const SqlFmtLazyRoute = SqlFmtLazyImport.update({
   path: '/sql-fmt',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/sql-fmt.lazy').then((d) => d.Route))
-
-const OpenapiLazyRoute = OpenapiLazyImport.update({
-  id: '/openapi',
-  path: '/openapi',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/openapi.lazy').then((d) => d.Route))
 
 const JwtDecodeLazyRoute = JwtDecodeLazyImport.update({
   id: '/jwt-decode',
@@ -104,11 +97,11 @@ const Base64LazyRoute = Base64LazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/base64.lazy').then((d) => d.Route))
 
-const IndexRoute = IndexImport.update({
+const IndexLazyRoute = IndexLazyImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
 // Populate the FileRoutesByPath interface
 
@@ -118,7 +111,7 @@ declare module '@tanstack/react-router' {
       id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexImport
+      preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
     '/base64': {
@@ -163,13 +156,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JwtDecodeLazyImport
       parentRoute: typeof rootRoute
     }
-    '/openapi': {
-      id: '/openapi'
-      path: '/openapi'
-      fullPath: '/openapi'
-      preLoaderRoute: typeof OpenapiLazyImport
-      parentRoute: typeof rootRoute
-    }
     '/sql-fmt': {
       id: '/sql-fmt'
       path: '/sql-fmt'
@@ -211,14 +197,13 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof IndexLazyRoute
   '/base64': typeof Base64LazyRoute
   '/html': typeof HtmlLazyRoute
   '/jq': typeof JqLazyRoute
   '/json-fmt': typeof JsonFmtLazyRoute
   '/jsonnet': typeof JsonnetLazyRoute
   '/jwt-decode': typeof JwtDecodeLazyRoute
-  '/openapi': typeof OpenapiLazyRoute
   '/sql-fmt': typeof SqlFmtLazyRoute
   '/url-viewer': typeof UrlViewerLazyRoute
   '/web-beautify': typeof WebBeautifyLazyRoute
@@ -227,14 +212,13 @@ export interface FileRoutesByFullPath {
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/': typeof IndexLazyRoute
   '/base64': typeof Base64LazyRoute
   '/html': typeof HtmlLazyRoute
   '/jq': typeof JqLazyRoute
   '/json-fmt': typeof JsonFmtLazyRoute
   '/jsonnet': typeof JsonnetLazyRoute
   '/jwt-decode': typeof JwtDecodeLazyRoute
-  '/openapi': typeof OpenapiLazyRoute
   '/sql-fmt': typeof SqlFmtLazyRoute
   '/url-viewer': typeof UrlViewerLazyRoute
   '/web-beautify': typeof WebBeautifyLazyRoute
@@ -244,14 +228,13 @@ export interface FileRoutesByTo {
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexRoute
+  '/': typeof IndexLazyRoute
   '/base64': typeof Base64LazyRoute
   '/html': typeof HtmlLazyRoute
   '/jq': typeof JqLazyRoute
   '/json-fmt': typeof JsonFmtLazyRoute
   '/jsonnet': typeof JsonnetLazyRoute
   '/jwt-decode': typeof JwtDecodeLazyRoute
-  '/openapi': typeof OpenapiLazyRoute
   '/sql-fmt': typeof SqlFmtLazyRoute
   '/url-viewer': typeof UrlViewerLazyRoute
   '/web-beautify': typeof WebBeautifyLazyRoute
@@ -269,7 +252,6 @@ export interface FileRouteTypes {
     | '/json-fmt'
     | '/jsonnet'
     | '/jwt-decode'
-    | '/openapi'
     | '/sql-fmt'
     | '/url-viewer'
     | '/web-beautify'
@@ -284,7 +266,6 @@ export interface FileRouteTypes {
     | '/json-fmt'
     | '/jsonnet'
     | '/jwt-decode'
-    | '/openapi'
     | '/sql-fmt'
     | '/url-viewer'
     | '/web-beautify'
@@ -299,7 +280,6 @@ export interface FileRouteTypes {
     | '/json-fmt'
     | '/jsonnet'
     | '/jwt-decode'
-    | '/openapi'
     | '/sql-fmt'
     | '/url-viewer'
     | '/web-beautify'
@@ -309,14 +289,13 @@ export interface FileRouteTypes {
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  IndexLazyRoute: typeof IndexLazyRoute
   Base64LazyRoute: typeof Base64LazyRoute
   HtmlLazyRoute: typeof HtmlLazyRoute
   JqLazyRoute: typeof JqLazyRoute
   JsonFmtLazyRoute: typeof JsonFmtLazyRoute
   JsonnetLazyRoute: typeof JsonnetLazyRoute
   JwtDecodeLazyRoute: typeof JwtDecodeLazyRoute
-  OpenapiLazyRoute: typeof OpenapiLazyRoute
   SqlFmtLazyRoute: typeof SqlFmtLazyRoute
   UrlViewerLazyRoute: typeof UrlViewerLazyRoute
   WebBeautifyLazyRoute: typeof WebBeautifyLazyRoute
@@ -325,14 +304,13 @@ export interface RootRouteChildren {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  IndexLazyRoute: IndexLazyRoute,
   Base64LazyRoute: Base64LazyRoute,
   HtmlLazyRoute: HtmlLazyRoute,
   JqLazyRoute: JqLazyRoute,
   JsonFmtLazyRoute: JsonFmtLazyRoute,
   JsonnetLazyRoute: JsonnetLazyRoute,
   JwtDecodeLazyRoute: JwtDecodeLazyRoute,
-  OpenapiLazyRoute: OpenapiLazyRoute,
   SqlFmtLazyRoute: SqlFmtLazyRoute,
   UrlViewerLazyRoute: UrlViewerLazyRoute,
   WebBeautifyLazyRoute: WebBeautifyLazyRoute,
@@ -357,7 +335,6 @@ export const routeTree = rootRoute
         "/json-fmt",
         "/jsonnet",
         "/jwt-decode",
-        "/openapi",
         "/sql-fmt",
         "/url-viewer",
         "/web-beautify",
@@ -366,7 +343,7 @@ export const routeTree = rootRoute
       ]
     },
     "/": {
-      "filePath": "index.tsx"
+      "filePath": "index.lazy.tsx"
     },
     "/base64": {
       "filePath": "base64.lazy.tsx"
@@ -385,9 +362,6 @@ export const routeTree = rootRoute
     },
     "/jwt-decode": {
       "filePath": "jwt-decode.lazy.tsx"
-    },
-    "/openapi": {
-      "filePath": "openapi.lazy.tsx"
     },
     "/sql-fmt": {
       "filePath": "sql-fmt.lazy.tsx"

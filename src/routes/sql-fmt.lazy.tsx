@@ -50,7 +50,7 @@ function RouteComponent() {
   return (
     <div className="block columns h-100">
       <div className="column is-10">
-        <Editor value={sqlQuery} onChange={onChange} extensions={[sql()]} />
+        <Editor title="SQL" value={sqlQuery} onChange={onChange} extensions={[sql()]} />
       </div>
       <div className="column is-2">
         <form onChange={onChangeSetting} onSubmit={onFormat} className="is-flex is-flex-direction-column">

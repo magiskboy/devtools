@@ -17,7 +17,7 @@ export const Layout: React.FC<PropsWithChildren> = ({children}) => {
       'h-100': true,
     })}>
       {!isHome && <Navbar className="mb-5" />}
-      <div className="is-flex-grow-1">{children}</div>
+      {children}
       <div className="py-4"><Footer /></div>
     </div>
   )

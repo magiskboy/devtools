@@ -35,22 +35,24 @@ function RouteComponent() {
   }
 
   return (
-    <div className="grid is-col-min-12 is-gap-5 ">
-      <div className="cell h-100">
-        <Editor
-          title="Jsonnet"
-          value={code}
-          extensions={[[StreamLanguage.define(jsonnet)]]}
-          onChange={onChange} 
-        />
-      </div>
-      <div className="cell h-100">
-        <Editor
-          title="JSON"
-          readOnly
-          extensions={[json()]}
-          value={output}
-        />
+    <div className="fixed-grid has-2-cols has-1-cols-mobile">
+      <div className="grid">
+        <div className="cell">
+          <Editor
+            title="JSONNET"
+            value={code}
+            extensions={[[StreamLanguage.define(jsonnet)]]}
+            onChange={onChange} 
+          />
+        </div>
+        <div className="cell">
+          <Editor
+            title="JSON"
+            readOnly
+            extensions={[json()]}
+            value={output}
+          />
+        </div>
       </div>
     </div>
   )

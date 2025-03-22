@@ -76,7 +76,7 @@ function RouteComponent() {
   return (
     <div className="columns h-100">
       <div className="column is-10">
-        <Editor extensions={codeMirrorExtensions} onChange={onCodeChange} value={code} />
+        <Editor title="CODE" extensions={codeMirrorExtensions} onChange={onCodeChange} value={code} />
       </div>
 
       <div className="column is-2">

@@ -10,7 +10,7 @@ export const Route = createLazyFileRoute('/jwt-decode')({
 })
 
 function RouteComponent() {
-  const [jwt, setJwt] = useState('');
+  const [jwt, setJwt] = useState(DEFAULT_JWT);
   const [data, setData] = useState('');
   const [header, setHeader] = useState('');
   const { setTitle } = useMenuContext();
@@ -39,18 +39,20 @@ function RouteComponent() {
 
 
   return (
-    <div className="columns h-100">
-      <div className="column">
-        <Editor title="JWT" value={jwt} onChange={setJwt} />
-      </div>
-      <div className="column">
-        <div className="fixed-grid has-1-cols">
-          <div className="grid is-gap-3">
-            <Editor title="Data" extensions={[json()]} readOnly value={data} height={undefined} className="cell" />
-            <Editor title="Header" extensions={[json()]} readOnly value={header} height={undefined} className="cell" />
-          </div>
+    <div className="fixed-grid has-2-cols">
+      <div className="grid h-100">
+        <div className="cell is-row-span-2">
+          <Editor title="JWT" value={jwt} onChange={setJwt} />
+        </div>
+        <div className="cell">
+          <Editor title="Data" extensions={[json()]} readOnly value={data} height={undefined} className="cell" />
+        </div>
+        <div className="cell">
+          <Editor title="Header" extensions={[json()]} readOnly value={header} height={undefined} className="cell" />
         </div>
       </div>
     </div>
   )
 }
+
+const DEFAULT_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';

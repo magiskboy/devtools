@@ -13,3 +13,7 @@
 .h-25 {
   height: 25%;
 }
+
+.cm-gutters {
+  background-color: transparent !important;
+}

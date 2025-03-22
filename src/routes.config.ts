@@ -10,5 +10,6 @@ export const ROUTE_CONFIG = [
   {"name": "Web beautifier", "path": "/web-beautify", "description": "A tool for beautifying and formatting web code, such as HTML, CSS, JSON and JavaScript."},
   {"name": "Base64", "path": "/base64", "description": "A tool for encoding and decoding binary data using the Base64 encoding scheme."},
   // {"name": "JWT", "path": "/jwt", "description": "A tool for encoding and decoding JSON Web Tokens (JWT), a standard for securely transmitting information between parties."},
-  {"name": "JWT decode", "path": "/jwt-decode", "description": "A tool for decoding JSON Web Tokens (JWT), a standard for securely transmitting information between parties."}
+  {"name": "JWT decode", "path": "/jwt-decode", "description": "A tool for decoding JSON Web Tokens (JWT), a standard for securely transmitting information between parties."},
+  {"name": "jq", "path": "/jq", "description": "A tool for querying and manipulating JSON data using a simple and powerful language."},
 ]

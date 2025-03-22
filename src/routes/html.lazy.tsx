@@ -41,7 +41,7 @@ function RouteComponent() {
     <div>
       <div className="columns">
         <div className="column is-10">
-          <Editor height="600px" onChange={onChange} value={htmlValue} extensions={[html()]} />
+          <Editor title="HTML" onChange={onChange} value={htmlValue} extensions={[html()]} />
         </div>
         <div className="column is-2">
           <form onChange={onChangeSetting} onSubmit={onFormat}>

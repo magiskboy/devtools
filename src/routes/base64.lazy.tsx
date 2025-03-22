@@ -34,16 +34,14 @@ function RouteComponent() {
     <div className="h-100">
       <div className="columns h-100">
         <div className="column">
-          <p className="is-size-5 mb-2">Data</p>
-          <Editor value={data} onChange={onChangeData} />
+          <Editor title="DATA" value={data} onChange={onChangeData} />
         </div>
         <div className="column is-1 is-flex is-flex-direction-column is-justify-content-center">
           <button className="button is-primary my-4" onClick={onEncode}>Encode</button>
           <button className="button is-secondary" onClick={onDecode}>Decode</button>
         </div>
         <div className="column">
-          <p className="is-size-5 mb-2">Base64 data</p>
-          <Editor value={b64Data} onChange={onChangeB64Data} />
+          <Editor title="BASE64" value={b64Data} onChange={onChangeB64Data} />
         </div>
       </div>
     </div>

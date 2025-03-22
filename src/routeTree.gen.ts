@@ -26,6 +26,7 @@ const OpenapiLazyImport = createFileRoute('/openapi')()
 const JwtDecodeLazyImport = createFileRoute('/jwt-decode')()
 const JsonnetLazyImport = createFileRoute('/jsonnet')()
 const JsonFmtLazyImport = createFileRoute('/json-fmt')()
+const JqLazyImport = createFileRoute('/jq')()
 const HtmlLazyImport = createFileRoute('/html')()
 const Base64LazyImport = createFileRoute('/base64')()
 
@@ -85,6 +86,12 @@ const JsonFmtLazyRoute = JsonFmtLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/json-fmt.lazy').then((d) => d.Route))
 
+const JqLazyRoute = JqLazyImport.update({
+  id: '/jq',
+  path: '/jq',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/jq.lazy').then((d) => d.Route))
+
 const HtmlLazyRoute = HtmlLazyImport.update({
   id: '/html',
   path: '/html',
@@ -126,6 +133,13 @@ declare module '@tanstack/react-router' {
       path: '/html'
       fullPath: '/html'
       preLoaderRoute: typeof HtmlLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/jq': {
+      id: '/jq'
+      path: '/jq'
+      fullPath: '/jq'
+      preLoaderRoute: typeof JqLazyImport
       parentRoute: typeof rootRoute
     }
     '/json-fmt': {
@@ -200,6 +214,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/base64': typeof Base64LazyRoute
   '/html': typeof HtmlLazyRoute
+  '/jq': typeof JqLazyRoute
   '/json-fmt': typeof JsonFmtLazyRoute
   '/jsonnet': typeof JsonnetLazyRoute
   '/jwt-decode': typeof JwtDecodeLazyRoute
@@ -215,6 +230,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/base64': typeof Base64LazyRoute
   '/html': typeof HtmlLazyRoute
+  '/jq': typeof JqLazyRoute
   '/json-fmt': typeof JsonFmtLazyRoute
   '/jsonnet': typeof JsonnetLazyRoute
   '/jwt-decode': typeof JwtDecodeLazyRoute
@@ -231,6 +247,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/base64': typeof Base64LazyRoute
   '/html': typeof HtmlLazyRoute
+  '/jq': typeof JqLazyRoute
   '/json-fmt': typeof JsonFmtLazyRoute
   '/jsonnet': typeof JsonnetLazyRoute
   '/jwt-decode': typeof JwtDecodeLazyRoute
@@ -248,6 +265,7 @@ export interface FileRouteTypes {
     | '/'
     | '/base64'
     | '/html'
+    | '/jq'
     | '/json-fmt'
     | '/jsonnet'
     | '/jwt-decode'
@@ -262,6 +280,7 @@ export interface FileRouteTypes {
     | '/'
     | '/base64'
     | '/html'
+    | '/jq'
     | '/json-fmt'
     | '/jsonnet'
     | '/jwt-decode'
@@ -276,6 +295,7 @@ export interface FileRouteTypes {
     | '/'
     | '/base64'
     | '/html'
+    | '/jq'
     | '/json-fmt'
     | '/jsonnet'
     | '/jwt-decode'
@@ -292,6 +312,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   Base64LazyRoute: typeof Base64LazyRoute
   HtmlLazyRoute: typeof HtmlLazyRoute
+  JqLazyRoute: typeof JqLazyRoute
   JsonFmtLazyRoute: typeof JsonFmtLazyRoute
   JsonnetLazyRoute: typeof JsonnetLazyRoute
   JwtDecodeLazyRoute: typeof JwtDecodeLazyRoute
@@ -307,6 +328,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   Base64LazyRoute: Base64LazyRoute,
   HtmlLazyRoute: HtmlLazyRoute,
+  JqLazyRoute: JqLazyRoute,
   JsonFmtLazyRoute: JsonFmtLazyRoute,
   JsonnetLazyRoute: JsonnetLazyRoute,
   JwtDecodeLazyRoute: JwtDecodeLazyRoute,
@@ -331,6 +353,7 @@ export const routeTree = rootRoute
         "/",
         "/base64",
         "/html",
+        "/jq",
         "/json-fmt",
         "/jsonnet",
         "/jwt-decode",
@@ -350,6 +373,9 @@ export const routeTree = rootRoute
     },
     "/html": {
       "filePath": "html.lazy.tsx"
+    },
+    "/jq": {
+      "filePath": "jq.lazy.tsx"
     },
     "/json-fmt": {
       "filePath": "json-fmt.lazy.tsx"

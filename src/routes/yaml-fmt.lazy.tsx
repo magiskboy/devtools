@@ -53,7 +53,7 @@ function RouteComponent() {
   return (
     <div className="columns h-100">
       <div className="column is-three-quarters">
-        <Editor extensions={[StreamLanguage.define(yaml)]} value={yamlValue} onChange={handleChangeYAMLValue} />
+        <Editor title="YAML" extensions={[StreamLanguage.define(yaml)]} value={yamlValue} onChange={handleChangeYAMLValue} />
       </div>
       <div className="column">
         <form onChange={onChangeSetting} onSubmit={onFormat} className="is-flex is-flex-direction-column">

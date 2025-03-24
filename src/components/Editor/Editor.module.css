@@ -11,6 +11,12 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+.editor__headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .editor__title {
   font-size: 0.875rem;
   font-weight: 600;
@@ -20,8 +26,21 @@
 
 .editor__actions {
   display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.editor__actionGroup {
+  display: flex;
   gap: 0.5rem;
   align-items: center;
+  padding-left: 1rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.editor__actionGroup:first-child {
+  padding-left: 0;
+  border-left: none;
 }
 
 .editor__button {

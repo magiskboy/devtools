@@ -1,10 +1,13 @@
+// External dependencies
 import { createLazyFileRoute } from '@tanstack/react-router'
-import { Editor } from '@/components';
 import { json } from '@codemirror/lang-json';
 import { StreamLanguage } from '@codemirror/language';
 import { yaml } from '@codemirror/legacy-modes/mode/yaml';
 import { useState } from 'react';
 import yamljs from 'js-yaml';
+
+// Internal absolute imports
+import { Editor } from '@/components';
 import { usePageTitle } from '@/hooks/usePageTitle';
 
 export const Route = createLazyFileRoute('/yaml-json')({

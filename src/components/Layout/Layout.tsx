@@ -2,23 +2,24 @@ import { useLocation } from '@tanstack/react-router';
 import { PropsWithChildren } from 'react';
 import cls from 'classnames';
 import { Navbar, Footer } from '@/components';
+import styles from './Layout.module.css';
 
 export const Layout: React.FC<PropsWithChildren> = ({children}) => {
   const { pathname } = useLocation();
   const isHome = pathname === '/';
 
   return (
-    <div className={cls({
-      'container': true,
-      'pt-6': isHome,
-      'is-flex': true,
-      'is-flex-direction-column': true,
-      'h-100': true,
+    <div className={cls(styles.layout, {
+      [styles['layout--home']]: isHome
     })}>
-      {!isHome && <Navbar className="mb-5" />}
-      {children}
-      <div className="py-4"><Footer /></div>
+      {!isHome && <Navbar />}
+      <div className={styles.layout__content}>
+        {children}
+      </div>
+      <div className={styles.layout__footer}>
+        <Footer />
+      </div>
     </div>
-  )
-}
+  );
+};
 

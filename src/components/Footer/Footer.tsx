@@ -36,23 +36,19 @@ const FooterComponent: React.FC<FooterProps> = () => {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.content}>
-        <p>
-          My IP: {ipState.isLoading ? 'Loading...' : ipState.ip}
-          {ipState.error && <span className={styles.errorMessage}> ({ipState.error})</span>}
+      <div className={styles.footer__content}>
+        {ipState.error ? (
+          <p className={styles.footer__error}>{ipState.error}</p>
+        ) : (
+          <p className={styles.footer__text}>
+            My IP: {ipState.isLoading ? 'Loading...' : ipState.ip}
+          </p>
+        )}
+        <p className={styles.footer__text}>
+          All data and HTTP requests to fetch JSON are processed locally in your browser.
         </p>
-        <p>All data and HTTP requests to fetch JSON are processed locally in your browser.</p>
-        <p>
-          Copyright &copy; {currentYear} -{' '}
-          <a 
-            href="https://nkthanh.dev" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            aria-label="Visit nkthanh.dev (opens in new tab)"
-            className={styles.link}
-          >
-            nkthanh.dev
-          </a>
+        <p className={styles.footer__text}>
+          Copyright © 2025 - <a href="https://nkthanh.dev" className={styles.footer__link}>nkthanh.dev</a>
         </p>
       </div>
     </footer>

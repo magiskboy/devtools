@@ -1,0 +1,26 @@
+.container {
+  padding: 1rem;
+}
+
+.editorContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.editor {
+  flex: 1;
+  min-height: 300px;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: var(--color-danger);
+  margin-top: 0.5rem;
+} 

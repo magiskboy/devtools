@@ -1,5 +1,8 @@
+// External dependencies
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react';
+
+// Internal absolute imports
 import { usePageTitle } from '@/hooks/usePageTitle';
 
 export const Route = createLazyFileRoute('/url-viewer')({

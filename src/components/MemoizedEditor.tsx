@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { Editor } from './Editor';
 import { LanguageSupport, StreamLanguage } from '@codemirror/language';
+import styles from './MemoizedEditor.module.css';
 
 interface MemoizedEditorProps {
   title: string;
@@ -26,16 +27,18 @@ export const MemoizedEditor = memo(function MemoizedEditor({
   className
 }: MemoizedEditorProps) {
   return (
-    <Editor
-      title={title}
-      value={value}
-      onChange={onChange}
-      extensions={extensions}
-      readOnly={readOnly}
-      height={height}
-      placeholder={placeholder}
-      minHeight={minHeight}
-      className={className}
-    />
+    <div className={styles.memoizedEditor__container}>
+      <Editor
+        title={title}
+        value={value}
+        onChange={onChange}
+        extensions={extensions}
+        readOnly={readOnly}
+        height={height}
+        placeholder={placeholder}
+        minHeight={minHeight}
+        className={`${styles.memoizedEditor} ${className || ''}`}
+      />
+    </div>
   );
 }); 

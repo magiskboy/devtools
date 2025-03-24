@@ -1,8 +1,13 @@
+// External dependencies
 import CodeMirror from '@uiw/react-codemirror';
 import type { ReactCodeMirrorProps } from '@uiw/react-codemirror';
 import { basicSetup } from '@uiw/codemirror-extensions-basic-setup';
-import { isDarkMode } from '@/libs/helpers';
 import { memo, useCallback, useState } from 'react';
+
+// Internal absolute imports
+import { isDarkMode } from '@/libs/helpers';
+
+// Styles
 import styles from './Editor.module.css';
 
 interface EditorProps extends ReactCodeMirrorProps {
@@ -36,11 +41,11 @@ const EditorComponent: React.FC<EditorProps> = ({ title, extensions, className, 
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <p className={styles.title}>{title}</p>
+    <div className={styles.editor}>
+      <div className={styles.editor__header}>
+        <p className={styles.editor__title}>{title}</p>
         <button 
-          className={`${styles.copyButton} ${copySuccess ? styles.success : ''}`}
+          className={`${styles.editor__button} ${copySuccess ? styles['editor__button--success'] : ''}`}
           onClick={handleCopy}
           aria-label="Copy code"
         >
@@ -55,7 +60,7 @@ const EditorComponent: React.FC<EditorProps> = ({ title, extensions, className, 
           }),
           ...(extensions || [])
         ]} 
-        className={`${styles.content} ${className || ''}`}
+        className={`${styles.editor__content} ${className || ''}`}
         theme={isDarkMode() ? 'dark' : 'light'}
         ref={handleRef}
         {...rest}

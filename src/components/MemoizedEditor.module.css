@@ -1,0 +1,10 @@
+.memoizedEditor {
+  width: 100%;
+  height: 100%;
+}
+
+.memoizedEditor__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+} 

@@ -1,7 +1,13 @@
+// External dependencies
 import { createLazyFileRoute } from '@tanstack/react-router'
-import { Editor } from '@/components';
 import React, { useState, useCallback, useEffect } from 'react';
+
+// Internal absolute imports
+import { Editor } from '@/components';
 import { usePageTitle } from '@/hooks/usePageTitle';
+
+// Styles
+import styles from './base64.module.css';
 
 export const Route = createLazyFileRoute('/base64')({
   component: RouteComponent,
@@ -111,57 +117,37 @@ function RouteComponent() {
   }, [handleEncode, handleDecode]);
 
   return (
-    <div className="fixed-grid has-9-cols">
-      <div className="grid">
-        <div className="cell is-col-span-4">
-          <Editor 
-            title="Data" 
-            value={state.data} 
-            onChange={handleDataChange} 
-            minHeight='500px'
-            placeholder="Enter text to encode/decode"
+    <div className={styles.container}>
+      <div className={styles.controls}>
+        <label>
+          <input
+            type="checkbox"
+            checked={state.autoConvert}
+            onChange={(e) => updateState({ autoConvert: e.target.checked })}
+          />
+          Auto Convert
+        </label>
+      </div>
+
+      <div className={styles.editorContainer}>
+        <div className={styles.editor}>
+          <Editor
+            value={state.data}
+            onChange={handleDataChange}
+            placeholder="Enter text to encode"
           />
         </div>
-        <div className="cell is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
-          <button 
-            className="button is-primary my-4" 
-            onClick={handleEncode}
-            disabled={!state.data}
-            data-testid="encode-button"
-          >
-            Encode
-          </button>
-          <button 
-            className="button is-secondary" 
-            onClick={handleDecode}
-            disabled={!state.b64Data}
-            data-testid="decode-button"
-          >
-            Decode
-          </button>
-          <label className="checkbox mt-4">
-            <input 
-              type="checkbox" 
-              checked={state.autoConvert}
-              onChange={toggleAutoConvert}
-            />
-            Auto-convert
-          </label>
-          {state.error && (
-            <div className="notification is-danger is-light mt-4">
-              {state.error}
-            </div>
-          )}
-        </div>
-        <div className="cell is-col-span-4">
-          <Editor 
-            title="Base64" 
-            value={state.b64Data} 
+
+        <div className={styles.editor}>
+          <Editor
+            value={state.b64Data}
             onChange={handleB64DataChange}
-            placeholder="Enter Base64 string to decode"
+            placeholder="Enter base64 to decode"
           />
         </div>
       </div>
+
+      {state.error && <div className={styles.error}>{state.error}</div>}
     </div>
   );
 }

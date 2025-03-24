@@ -1,5 +1,5 @@
 .settingForm {
-  padding: 1rem;
+  padding: 0rem;
   background-color: var(--background-color);
   border-radius: 4px;
   height: 100%;
@@ -14,7 +14,7 @@
 }
 
 .settingForm__title {
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
   font-size: 0.875rem;
   font-weight: 600;
   text-transform: uppercase;

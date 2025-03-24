@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as NotesImport } from './routes/notes'
 
 // Create Virtual Routes
 
@@ -97,6 +98,12 @@ const Base64LazyRoute = Base64LazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/base64.lazy').then((d) => d.Route))
 
+const NotesRoute = NotesImport.update({
+  id: '/notes',
+  path: '/notes',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexLazyRoute = IndexLazyImport.update({
   id: '/',
   path: '/',
@@ -112,6 +119,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/notes': {
+      id: '/notes'
+      path: '/notes'
+      fullPath: '/notes'
+      preLoaderRoute: typeof NotesImport
       parentRoute: typeof rootRoute
     }
     '/base64': {
@@ -198,6 +212,7 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '/notes': typeof NotesRoute
   '/base64': typeof Base64LazyRoute
   '/html': typeof HtmlLazyRoute
   '/jq': typeof JqLazyRoute
@@ -213,6 +228,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
+  '/notes': typeof NotesRoute
   '/base64': typeof Base64LazyRoute
   '/html': typeof HtmlLazyRoute
   '/jq': typeof JqLazyRoute
@@ -229,6 +245,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
+  '/notes': typeof NotesRoute
   '/base64': typeof Base64LazyRoute
   '/html': typeof HtmlLazyRoute
   '/jq': typeof JqLazyRoute
@@ -246,6 +263,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/notes'
     | '/base64'
     | '/html'
     | '/jq'
@@ -260,6 +278,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/notes'
     | '/base64'
     | '/html'
     | '/jq'
@@ -274,6 +293,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/notes'
     | '/base64'
     | '/html'
     | '/jq'
@@ -290,6 +310,7 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  NotesRoute: typeof NotesRoute
   Base64LazyRoute: typeof Base64LazyRoute
   HtmlLazyRoute: typeof HtmlLazyRoute
   JqLazyRoute: typeof JqLazyRoute
@@ -305,6 +326,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  NotesRoute: NotesRoute,
   Base64LazyRoute: Base64LazyRoute,
   HtmlLazyRoute: HtmlLazyRoute,
   JqLazyRoute: JqLazyRoute,
@@ -329,6 +351,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/notes",
         "/base64",
         "/html",
         "/jq",
@@ -344,6 +367,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/notes": {
+      "filePath": "notes.tsx"
     },
     "/base64": {
       "filePath": "base64.lazy.tsx"

@@ -48,6 +48,7 @@ function RouteComponent() {
             onChange={onChangeQuery}
             height='200px'
             extensions={[StreamLanguage.define(jqParser)]}
+            minHeight='200px'
           />
         </div>
         <div className="cell is-row-span-2">

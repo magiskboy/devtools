@@ -1,35 +1,29 @@
 import React, { useState } from 'react';
-
-interface Header {
-  key: string;
-  value: string;
-}
+import cls from 'classnames';
 
 interface FetchModalProps {
   onClose: () => void;
   onFetch: (data: string) => void;
+  show?: boolean;
 }
 
-export const FetchModal: React.FC<FetchModalProps> = ({ onClose, onFetch }) => {
-  const [url, setUrl] = useState('');
-  const [method, setMethod] = useState('GET');
-  const [headers, setHeaders] = useState<Header[]>([{ key: '', value: '' }]);
+export const FetchModal: React.FC<FetchModalProps> = ({ onClose, onFetch, show }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [setting, setSetting] = useState({
+    url: 'https://api.github.com/users/magiskboy',
+    method: 'GET',
+    headers: 'Accept: application/vnd.github+json\nX-GitHub-Api-Version: 2022-11-28',
+    loading: false,
+    error: null,
+  })
 
-  const handleAddHeader = () => {
-    setHeaders([...headers, { key: '', value: '' }]);
-  };
-
-  const handleHeaderChange = (index: number, field: 'key' | 'value', value: string) => {
-    const newHeaders = [...headers];
-    newHeaders[index][field] = value;
-    setHeaders(newHeaders);
-  };
-
-  const handleRemoveHeader = (index: number) => {
-    setHeaders(headers.filter((_, i) => i !== index));
-  };
+  const onSettingChange: React.ChangeEventHandler<HTMLFormElement> = (e) => {
+    setSetting({
+      ...setting,
+      [e.target.name]: e.target.value,
+    });
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,7 +31,9 @@ export const FetchModal: React.FC<FetchModalProps> = ({ onClose, onFetch }) => {
     setError(null);
 
     try {
-      const headerObject = headers.reduce((acc, { key, value }) => {
+      const {url, method, headers} = setting;
+      const headerObject = headers.split('\n').reduce((acc, line) => {
+        const [key, value] = line.split(': ');
         if (key && value) acc[key] = value;
         return acc;
       }, {} as Record<string, string>);
@@ -62,7 +58,7 @@ export const FetchModal: React.FC<FetchModalProps> = ({ onClose, onFetch }) => {
   };
 
   return (
-    <div className="modal is-active">
+    <div className={cls('modal', { 'is-active': !!show })}>
       <div className="modal-background" onClick={onClose}></div>
       <div className="modal-card">
         <header className="modal-card-head">
@@ -74,15 +70,14 @@ export const FetchModal: React.FC<FetchModalProps> = ({ onClose, onFetch }) => {
           ></button>
         </header>
         <section className="modal-card-body">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} onChange={onSettingChange}>
             <div className="field">
               <label className="label">URL</label>
               <div className="control">
                 <input
                   type="url"
                   className="input"
-                  value={url}
-                  onChange={e => setUrl(e.target.value)}
+                  value={setting.url}
                   required
                   placeholder="https://api.example.com/data"
                 />
@@ -93,10 +88,7 @@ export const FetchModal: React.FC<FetchModalProps> = ({ onClose, onFetch }) => {
               <label className="label">Method</label>
               <div className="control">
                 <div className="select is-fullwidth">
-                  <select
-                    value={method}
-                    onChange={e => setMethod(e.target.value)}
-                  >
+                  <select value={setting.method}>
                     <option value="GET">GET</option>
                     <option value="POST">POST</option>
                     <option value="PUT">PUT</option>
@@ -107,45 +99,16 @@ export const FetchModal: React.FC<FetchModalProps> = ({ onClose, onFetch }) => {
             </div>
 
             <div className="field">
-              <label className="label">
-                Headers
-                <button
-                  type="button"
-                  className="button is-small is-link is-outlined ml-2"
-                  onClick={handleAddHeader}
-                >
-                  + Add Header
-                </button>
-              </label>
-              {headers.map((header, index) => (
-                <div key={index} className="field has-addons mb-2">
-                  <div className="control is-expanded">
-                    <input
-                      className="input"
-                      placeholder="Header name"
-                      value={header.key}
-                      onChange={e => handleHeaderChange(index, 'key', e.target.value)}
-                    />
-                  </div>
-                  <div className="control is-expanded">
-                    <input
-                      className="input"
-                      placeholder="Value"
-                      value={header.value}
-                      onChange={e => handleHeaderChange(index, 'value', e.target.value)}
-                    />
-                  </div>
-                  <div className="control">
-                    <button
-                      type="button"
-                      className="button is-danger"
-                      onClick={() => handleRemoveHeader(index)}
-                    >
-                      ×
-                    </button>
-                  </div>
-                </div>
-              ))}
+              <label className="label">Headers</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  name="headers"
+                  value={setting.headers}
+                  placeholder="Key1: Value1
+Key2: Value2"
+                />
+              </div>
             </div>
 
             {error && (
@@ -155,7 +118,7 @@ export const FetchModal: React.FC<FetchModalProps> = ({ onClose, onFetch }) => {
             )}
           </form>
         </section>
-        <footer className="modal-card-foot">
+        <footer className="modal-card-foot is-flex is-gap-1">
           <button
             type="submit"
             className={`button is-primary ${loading ? 'is-loading' : ''}`}

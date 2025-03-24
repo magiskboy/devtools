@@ -30,7 +30,7 @@ function RouteComponent() {
   }
 
   return (
-    <div className="fixed-grid has-2-cols has-1-cols-mobile">
+    <div className="fixed-grid has-2-cols has-1-cols-mobile h-100">
       <div className="grid">
         <div className="cell">
           <Editor

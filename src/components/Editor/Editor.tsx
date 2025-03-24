@@ -10,7 +10,7 @@ import { FetchModal } from './FetchModal';
 interface EditorProps extends ReactCodeMirrorProps {
   title?: string;
   acceptedFileTypes?: string;
-  onContentChange?: (content: string) => void;
+  onChange?: (value: string) => void;
 }
 
 const EditorComponent: React.FC<EditorProps> = ({ 
@@ -19,7 +19,6 @@ const EditorComponent: React.FC<EditorProps> = ({
   className,
   acceptedFileTypes,
   onChange,
-  onContentChange,
   ...rest 
 }) => {
   const [copySuccess, setCopySuccess] = useState(false);
@@ -48,15 +47,15 @@ const EditorComponent: React.FC<EditorProps> = ({
     reader.onload = (e) => {
       const content = e.target?.result;
       if (typeof content === 'string') {
-        onContentChange?.(content);
+        onChange?.(content);
       }
     };
     reader.readAsText(file);
-  }, [onContentChange]);
+  }, [onChange]);
 
   const handleFetchData = useCallback((data: string) => {
-    onContentChange?.(data);
-  }, [onContentChange]);
+    onChange?.(data);
+  }, [onChange]);
 
   const handleRef = useCallback((ref: any) => {
     if (!ref?.editor) return;
@@ -116,16 +115,16 @@ const EditorComponent: React.FC<EditorProps> = ({
         ]} 
         className={`${styles.editor__content} ${className || ''}`}
         theme={isDarkMode() ? 'dark' : 'light'}
+        minHeight='500px'
         ref={handleRef}
         onChange={onChange}
         {...rest}
       />
-      {showFetchModal && (
-        <FetchModal
-          onClose={() => setShowFetchModal(false)}
-          onFetch={handleFetchData}
-        />
-      )}
+      <FetchModal
+        onClose={() => setShowFetchModal(false)}
+        onFetch={handleFetchData}
+        show={showFetchModal}
+      />
     </div>
   );
 };

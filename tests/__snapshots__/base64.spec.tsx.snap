@@ -43,7 +43,7 @@ exports[`base64 1`] = `
             href="/"
           >
              
-            DevTools
+            Base64
              
           </a>
         </div>
@@ -94,6 +94,294 @@ exports[`base64 1`] = `
         </div>
       </div>
     </nav>
+    <div
+      class="fixed-grid has-9-cols"
+    >
+      <div
+        class="grid"
+      >
+        <div
+          class="cell is-col-span-4"
+        >
+          <div
+            class="_container_geklt_1"
+          >
+            <div
+              class="_header_geklt_6"
+            >
+              <p
+                class="_title_geklt_14"
+              >
+                Data
+              </p>
+              <button
+                aria-label="Copy code"
+                class="_copyButton_geklt_21 "
+              >
+                Copy
+              </button>
+            </div>
+            <div
+              class="cm-theme-light _content_geklt_39 "
+              style="width: 148px;"
+            >
+              <div
+                class="cm-editor ͼ1 ͼ2 ͼ4 ͼ18 ͼ15"
+                style="background-color: transparent;"
+              >
+                <div
+                  aria-live="polite"
+                  class="cm-announced"
+                />
+                <div
+                  class="cm-scroller"
+                  tabindex="-1"
+                >
+                  <div
+                    aria-hidden="true"
+                    class="cm-gutters"
+                    style="min-height: 26.1953px; position: sticky;"
+                  >
+                    <div
+                      class="cm-gutter cm-lineNumbers"
+                    >
+                      <div
+                        class="cm-gutterElement"
+                        style="height: 0px; visibility: hidden; pointer-events: none;"
+                      >
+                        9
+                      </div>
+                      <div
+                        class="cm-gutterElement cm-activeLineGutter"
+                        style="height: 18.1953px; margin-top: 4px;"
+                      >
+                        1
+                      </div>
+                    </div>
+                    <div
+                      class="cm-gutter cm-foldGutter"
+                    >
+                      <div
+                        class="cm-gutterElement"
+                        style="height: 0px; visibility: hidden; pointer-events: none;"
+                      >
+                        <span
+                          title="Unfold line"
+                        >
+                          ›
+                        </span>
+                      </div>
+                      <div
+                        class="cm-gutterElement cm-activeLineGutter"
+                        style="height: 18.1953px; margin-top: 4px;"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    aria-multiline="true"
+                    autocapitalize="off"
+                    autocorrect="off"
+                    class="cm-content"
+                    contenteditable="true"
+                    role="textbox"
+                    spellcheck="false"
+                    style="tab-size: 4;"
+                    translate="no"
+                    writingsuggestions="false"
+                  >
+                    <div
+                      class="cm-activeLine cm-line"
+                    >
+                      <img
+                        aria-hidden="true"
+                        class="cm-widgetBuffer"
+                      />
+                      <span
+                        aria-label="placeholder Enter text to encode/decode"
+                        class="cm-placeholder"
+                        contenteditable="false"
+                        style="pointer-events: none;"
+                      >
+                        Enter text to encode/decode
+                      </span>
+                      <br />
+                    </div>
+                  </div>
+                  <div
+                    aria-hidden="true"
+                    class="cm-layer cm-layer-above cm-cursorLayer"
+                    style="z-index: 150; animation-duration: 1200ms;"
+                  >
+                    <div
+                      class="cm-cursor cm-cursor-primary"
+                      style="left: 36.8281px; top: 5.5px; height: 15px;"
+                    />
+                  </div>
+                  <div
+                    aria-hidden="true"
+                    class="cm-layer cm-selectionLayer"
+                    style="z-index: -2;"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="cell is-flex is-flex-direction-column is-justify-content-center is-align-items-center"
+        >
+          <button
+            class="button is-primary my-4"
+            data-testid="encode-button"
+            disabled=""
+          >
+            Encode
+          </button>
+          <button
+            class="button is-secondary"
+            data-testid="decode-button"
+            disabled=""
+          >
+            Decode
+          </button>
+          <label
+            class="checkbox mt-4"
+          >
+            <input
+              type="checkbox"
+            />
+            Auto-convert
+          </label>
+        </div>
+        <div
+          class="cell is-col-span-4"
+        >
+          <div
+            class="_container_geklt_1"
+          >
+            <div
+              class="_header_geklt_6"
+            >
+              <p
+                class="_title_geklt_14"
+              >
+                Base64
+              </p>
+              <button
+                aria-label="Copy code"
+                class="_copyButton_geklt_21 "
+              >
+                Copy
+              </button>
+            </div>
+            <div
+              class="cm-theme-light _content_geklt_39 "
+              style="width: 148px;"
+            >
+              <div
+                class="cm-editor ͼ1 ͼ2 ͼ4 ͼ19 ͼ15"
+                style="background-color: transparent;"
+              >
+                <div
+                  aria-live="polite"
+                  class="cm-announced"
+                />
+                <div
+                  class="cm-scroller"
+                  tabindex="-1"
+                >
+                  <div
+                    aria-hidden="true"
+                    class="cm-gutters"
+                    style="min-height: 26.1953px; position: sticky;"
+                  >
+                    <div
+                      class="cm-gutter cm-lineNumbers"
+                    >
+                      <div
+                        class="cm-gutterElement"
+                        style="height: 0px; visibility: hidden; pointer-events: none;"
+                      >
+                        9
+                      </div>
+                      <div
+                        class="cm-gutterElement cm-activeLineGutter"
+                        style="height: 18.1953px; margin-top: 4px;"
+                      >
+                        1
+                      </div>
+                    </div>
+                    <div
+                      class="cm-gutter cm-foldGutter"
+                    >
+                      <div
+                        class="cm-gutterElement"
+                        style="height: 0px; visibility: hidden; pointer-events: none;"
+                      >
+                        <span
+                          title="Unfold line"
+                        >
+                          ›
+                        </span>
+                      </div>
+                      <div
+                        class="cm-gutterElement cm-activeLineGutter"
+                        style="height: 18.1953px; margin-top: 4px;"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    aria-multiline="true"
+                    autocapitalize="off"
+                    autocorrect="off"
+                    class="cm-content"
+                    contenteditable="true"
+                    role="textbox"
+                    spellcheck="false"
+                    style="tab-size: 4;"
+                    translate="no"
+                    writingsuggestions="false"
+                  >
+                    <div
+                      class="cm-activeLine cm-line"
+                    >
+                      <img
+                        aria-hidden="true"
+                        class="cm-widgetBuffer"
+                      />
+                      <span
+                        aria-label="placeholder Enter Base64 string to decode"
+                        class="cm-placeholder"
+                        contenteditable="false"
+                        style="pointer-events: none;"
+                      >
+                        Enter Base64 string to decode
+                      </span>
+                      <br />
+                    </div>
+                  </div>
+                  <div
+                    aria-hidden="true"
+                    class="cm-layer cm-layer-above cm-cursorLayer"
+                    style="z-index: 150; animation-duration: 1200ms;"
+                  >
+                    <div
+                      class="cm-cursor cm-cursor-primary"
+                      style="left: 36.8281px; top: 5.5px; height: 15px;"
+                    />
+                  </div>
+                  <div
+                    aria-hidden="true"
+                    class="cm-layer cm-selectionLayer"
+                    style="z-index: -2;"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div
       class="modal"
       style="justify-content: initial;"
@@ -178,25 +466,33 @@ exports[`base64 1`] = `
       class="py-4"
     >
       <footer
-        class="block py-4"
+        class="_footer_1d5za_1"
       >
         <div
-          class="content has-text-centered"
+          class="_content_1d5za_7"
         >
           <p>
             My IP: 
+            117.5.110.214
           </p>
           <p>
             All data and HTTP requests to fetch JSON are processed locally in your browser.
           </p>
-          Copyright © 
-          2025
-           - 
-          <a
-            href="https://nkthanh.dev"
-          >
-            nkthanh.dev
-          </a>
+          <p>
+            Copyright © 
+            2025
+             -
+             
+            <a
+              aria-label="Visit nkthanh.dev (opens in new tab)"
+              class="_link_1d5za_24"
+              href="https://nkthanh.dev"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              nkthanh.dev
+            </a>
+          </p>
         </div>
       </footer>
     </div>

@@ -3,9 +3,9 @@ import { Editor } from '@/components';
 import { json } from '@codemirror/lang-json';
 import { StreamLanguage } from '@codemirror/language';
 import { yaml } from '@codemirror/legacy-modes/mode/yaml';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import yamljs from 'js-yaml';
-import { useMenuContext } from '@/contexts';
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 export const Route = createLazyFileRoute('/yaml-json')({
   component: RouteComponent,
@@ -14,12 +14,8 @@ export const Route = createLazyFileRoute('/yaml-json')({
 function RouteComponent() {
   const [jsonValue, setJSON] = useState('');
   const [yamlValue, setYAML] = useState(DEFAULT_YAML);
-  const { setTitle } = useMenuContext();
 
-  useEffect(() => {
-    setTitle('JSON/YAML Converter');
-  }, [setTitle]);
-
+  usePageTitle("JSON/YAML Converter");
   const onChangeJson = (value: string) => {
     setJSON(value);
     try {

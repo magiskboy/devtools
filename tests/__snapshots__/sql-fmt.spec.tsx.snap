@@ -181,25 +181,33 @@ exports[`sql-fmt 1`] = `
       class="py-4"
     >
       <footer
-        class="block py-4"
+        class="_footer_1d5za_1"
       >
         <div
-          class="content has-text-centered"
+          class="_content_1d5za_7"
         >
           <p>
             My IP: 
+            Loading...
           </p>
           <p>
             All data and HTTP requests to fetch JSON are processed locally in your browser.
           </p>
-          Copyright © 
-          2025
-           - 
-          <a
-            href="https://nkthanh.dev"
-          >
-            nkthanh.dev
-          </a>
+          <p>
+            Copyright © 
+            2025
+             -
+             
+            <a
+              aria-label="Visit nkthanh.dev (opens in new tab)"
+              class="_link_1d5za_24"
+              href="https://nkthanh.dev"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              nkthanh.dev
+            </a>
+          </p>
         </div>
       </footer>
     </div>

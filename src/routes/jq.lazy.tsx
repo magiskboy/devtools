@@ -2,24 +2,20 @@ import { createLazyFileRoute } from '@tanstack/react-router'
 import { json } from '@codemirror/lang-json';
 import { useEffect, useState } from 'react';
 import { Editor } from '@/components';
-import { useMenuContext } from '@/contexts';
 import { jqParser } from '@/libs/codemirror/jq';
 import { StreamLanguage } from '@codemirror/language';
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 export const Route = createLazyFileRoute('/jq')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
+  usePageTitle("jq");
   const [data, setData] = useState(DEFAULT_JSON);
   const [output, setOutput] = useState('');
-  const { setTitle } = useMenuContext();
   const [jqInstance, setJqInstance] = useState<JqInstance>();
   const [query, setQuery] = useState('');
-
-  useEffect(() => {
-    setTitle('jq')
-  }, [setTitle]);
 
   useEffect(() => {
     jq.then((instance) => setJqInstance(instance));

@@ -3,12 +3,11 @@ import { sql } from '@codemirror/lang-sql';
 import { useEffect, useState } from 'react';
 import { format, FunctionCase, KeywordCase, SqlLanguage, supportedDialects } from 'sql-formatter';
 import { Editor, SettingForm } from '@/components';
-import { useMenuContext } from '@/contexts';
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 
 function RouteComponent() {
   const [sqlQuery, setSqlQuery] = useState(DEFAULT_SQL);
-  const { setTitle } = useMenuContext();
   const [setting, setSetting] = useState<{
     language: SqlLanguage,
     keywordCase: KeywordCase,
@@ -21,9 +20,7 @@ function RouteComponent() {
     functionCase: 'upper',
   })
 
-  useEffect(() => {
-    setTitle('SQL Formatter')
-  }, [setTitle]);
+  usePageTitle("SQL Formatter");
 
   const onChange = (value: string) => {
     setSqlQuery(value);

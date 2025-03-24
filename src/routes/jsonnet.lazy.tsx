@@ -2,10 +2,9 @@ import { createLazyFileRoute } from '@tanstack/react-router'
 import { json } from '@codemirror/lang-json';
 import { useEffect, useState } from 'react';
 import { Editor } from '@/components';
-import { useMenuContext } from '@/contexts';
 import { StreamLanguage } from '@codemirror/language';
 import { jsonnet } from '@/libs/codemirror/jsonnet';
-
+import { usePageTitle } from '@/hooks/usePageTitle';
 export const Route = createLazyFileRoute('/jsonnet')({
   component: RouteComponent,
 })
@@ -13,11 +12,7 @@ export const Route = createLazyFileRoute('/jsonnet')({
 function RouteComponent() {
   const [code, setCode] = useState(DEFAULT_JSONNET);
   const [output, setOutput] = useState('');
-  const { setTitle } = useMenuContext();
-
-  useEffect(() => {
-    setTitle('Jsonnet')
-  }, [setTitle]);
+  usePageTitle("Jsonnet");
 
   useEffect(() => {
     const response = fetch('/vendors/jsonnet/libjsonnet.wasm');

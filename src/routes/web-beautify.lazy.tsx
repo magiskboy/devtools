@@ -1,5 +1,4 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import { useMenuContext } from '@/contexts';
 import { useEffect, useState } from 'react';
 import { Editor, SettingForm } from '@/components';
 import { json } from '@codemirror/lang-json';
@@ -8,6 +7,7 @@ import { javascript } from '@codemirror/lang-javascript';
 import {css} from '@codemirror/legacy-modes/mode/css';
 import { LanguageSupport, StreamLanguage } from '@codemirror/language';
 import { html_beautify, js_beautify, css_beautify } from 'js-beautify';
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 export const Route = createLazyFileRoute('/web-beautify')({
   component: RouteComponent,
@@ -31,7 +31,7 @@ const BEAUTIFIERS = {
 const SUPPORTED_LANGS = ['html', 'css', 'json', 'javascript'];
 
 function RouteComponent() {
-  const { setTitle } = useMenuContext();
+  usePageTitle("Web Beautifier");
   const [setting, setSetting] = useState<{
     language: keyof typeof CODEMIRROR_EXTENSIONS
     indentSize: number,
@@ -42,9 +42,6 @@ function RouteComponent() {
   const [codeMirrorExtensions, setCodeMirrorExtensions] = useState<Array<LanguageSupport | StreamLanguage<unknown>>>([]);
   const [code, setCode] = useState('');
   
-  useEffect(() => {
-    setTitle('Web beautifier');
-  }, [setTitle]);
 
   const onChange: React.ChangeEventHandler<HTMLFormElement> = (event) => {
     const value = event.target.value;

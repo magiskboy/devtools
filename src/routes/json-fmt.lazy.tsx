@@ -1,21 +1,18 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { json } from "@codemirror/lang-json";
-import { useMenuContext } from '@/contexts';
 import { Editor } from "@/components";
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 export const Route = createLazyFileRoute('/json-fmt')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  const { setTitle } = useMenuContext();
   const [jsonValue, setJSONValue] = useState(DEFAULT_JSON_VALUE);
   const [tabWidth, setTabWidth] = useState(2);
 
-  useEffect(() => {
-    setTitle('JSON Formatter');
-  }, [setTitle]);
+  usePageTitle("JSON Formatter");
 
   const onFormat = () => {
     const formatted = JSON.stringify(JSON.parse(jsonValue), null, tabWidth);

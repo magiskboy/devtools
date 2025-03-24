@@ -2,17 +2,50 @@ import CodeMirror from '@uiw/react-codemirror';
 import type { ReactCodeMirrorProps } from '@uiw/react-codemirror';
 import { basicSetup } from '@uiw/codemirror-extensions-basic-setup';
 import { isDarkMode } from '@/libs/helpers';
+import { memo, useCallback, useState } from 'react';
+import styles from './Editor.module.css';
 
+interface EditorProps extends ReactCodeMirrorProps {
+  title?: string;
+}
 
-export const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props) => {
-  const { title, extensions, className,...rest } = props;
+const EditorComponent: React.FC<EditorProps> = ({ title, extensions, className, ...rest }) => {
+  const [copySuccess, setCopySuccess] = useState(false);
+
+  const handleCopy = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(rest.value || '');
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy text:', err);
+    }
+  }, [rest.value]);
+
+  const handleRef = useCallback((ref: any) => {
+    if (!ref?.editor) return;
+    
+    const width = ref.editor.clientWidth;
+    if (width) {
+      ref.editor.style.width = `${width}px`;
+      const firstChild = ref.editor.children[0];
+      if (firstChild) {
+        firstChild.setAttribute('style', 'background-color: transparent;');
+      }
+    }
+  }, []);
 
   return (
-    <div className="h-100" style={{ border: '1px solid rgba(255,255,255,0.12)' }}>
-      <div className="py-3 px-5 is-flex is-justify-content-space-between" style={{ borderBottom: '1px solid rgba(255,255,255,0.12)'}}>
-        <p className="is-size-6 has-text-weight-bold" style={{ textTransform: 'uppercase' }}>{title}</p>
-
-        <span style={{cursor: 'pointer'}} onClick={() => navigator.clipboard.writeText(rest.value || '')}>Copy</span>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <p className={styles.title}>{title}</p>
+        <button 
+          className={`${styles.copyButton} ${copySuccess ? styles.success : ''}`}
+          onClick={handleCopy}
+          aria-label="Copy code"
+        >
+          {copySuccess ? 'Copied!' : 'Copy'}
+        </button>
       </div>
       <CodeMirror 
         extensions={[
@@ -22,22 +55,14 @@ export const Editor: React.FC<ReactCodeMirrorProps & {title?: string}> = (props)
           }),
           ...(extensions || [])
         ]} 
-        className={`${className || ''}`}
+        className={`${styles.content} ${className || ''}`}
         theme={isDarkMode() ? 'dark' : 'light'}
-        style={{ overflow: 'scroll' }}
-        ref={(ref) => {
-          const width = ref?.editor?.clientWidth;
-          if (width && ref.editor) {
-            ref.editor.style.width = `${width}px`;
-            if (ref.editor.children[0]) {
-              ref.editor.children[0].setAttribute('style', 'background-color: transparent;');
-            }
-          }
-
-        }}
+        ref={handleRef}
         {...rest}
       />
     </div>
-  )
-}
+  );
+};
+
+export const Editor = memo(EditorComponent);
 

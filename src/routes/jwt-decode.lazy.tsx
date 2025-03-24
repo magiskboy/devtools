@@ -1,25 +1,33 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { json } from '@codemirror/lang-json';
-import { Editor } from '@/components';
-import { useEffect, useState } from 'react';
+import { MemoizedEditor } from '@/components/MemoizedEditor';
+import { useCallback, useEffect, useState } from 'react';
 import { InvalidTokenError, jwtDecode } from 'jwt-decode';
-import { useMenuContext } from '@/contexts';
+import { usePageTitle } from '@/hooks/usePageTitle';
+import { useErrorHandler } from '@/hooks/useErrorHandler';
+
+const DEFAULT_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
 
 export const Route = createLazyFileRoute('/jwt-decode')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
+  usePageTitle('JWT Decode');
+  const { error, handleError, clearError } = useErrorHandler();
   const [jwt, setJwt] = useState(DEFAULT_JWT);
   const [data, setData] = useState('');
   const [header, setHeader] = useState('');
-  const { setTitle } = useMenuContext();
 
-  useEffect(() => setTitle('JWT Decode'), [setTitle]);
+  const handleJwtChange = useCallback((value: string) => {
+    setJwt(value);
+    clearError();
+  }, [clearError]);
 
   useEffect(() => {
     if (!jwt) {
       setData("");
+      setHeader("");
       return;
     }
 
@@ -33,26 +41,47 @@ function RouteComponent() {
       if (e instanceof InvalidTokenError) {
         setData(e.message);
         setHeader('');
+        handleError(e, 'Invalid JWT token');
       }
     }
-  }, [jwt]);
-
+  }, [jwt, handleError]);
 
   return (
     <div className="fixed-grid has-2-cols">
       <div className="grid h-100">
         <div className="cell is-row-span-2">
-          <Editor title="JWT" value={jwt} onChange={setJwt} />
+          <MemoizedEditor 
+            title="JWT" 
+            value={jwt} 
+            onChange={handleJwtChange}
+            placeholder="Enter JWT token to decode"
+          />
         </div>
         <div className="cell">
-          <Editor title="Data" extensions={[json()]} readOnly value={data} height={undefined} className="cell" />
+          <MemoizedEditor 
+            title="Data" 
+            extensions={[json()]} 
+            readOnly 
+            value={data} 
+            height="100%"
+          />
         </div>
         <div className="cell">
-          <Editor title="Header" extensions={[json()]} readOnly value={header} height={undefined} className="cell" />
+          <MemoizedEditor 
+            title="Header" 
+            extensions={[json()]} 
+            readOnly 
+            value={header} 
+            height="100%"
+          />
         </div>
       </div>
+      {error && (
+        <div className="notification is-danger is-light mt-4">
+          {error.message}
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-const DEFAULT_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';

@@ -1,17 +1,16 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import { useEffect, useState } from "react";
-import { useMenuContext } from "@/contexts";
+import { useState } from "react";
 import { Editor, SettingForm } from "@/components";
 import { StreamLanguage } from "@codemirror/language";
 import { yaml } from "@codemirror/legacy-modes/mode/yaml";
 import yamljs from 'js-yaml';
-
+import { usePageTitle } from '@/hooks/usePageTitle';
 export const Route = createLazyFileRoute('/yaml-fmt')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  const { setTitle } = useMenuContext();
+  usePageTitle("YAML Formatter");
   const [setting, setSetting] = useState<{
     indent: number,
     quotingType: '"' | "'",
@@ -26,10 +25,6 @@ function RouteComponent() {
     noArrayIndent: false
   });
   const [yamlValue, setYAML] = useState(DEFAULT_YAML_VALUE);
-
-  useEffect(() => {
-    setTitle('YAML formatter');
-  }, [setTitle]);
 
   const onChangeSetting: React.ChangeEventHandler<HTMLFormElement> = (event) => {
     const value = event.target.value;

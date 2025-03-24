@@ -3,12 +3,14 @@ import { useState } from "react";
 import { html } from '@codemirror/lang-html';
 import { Editor, SettingForm }from "@/components";
 import { html_beautify } from 'js-beautify';
+import { usePageTitle } from '@/hooks/usePageTitle';
 
 export const Route = createLazyFileRoute('/html')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
+  usePageTitle("HTML");
   const [htmlValue, setHTML] = useState(HTML_VALUE_DEFAULT);
   const [setting, setSetting] = useState({
     indentSize: 2,

@@ -75,11 +75,12 @@ export const FetchModal: React.FC<FetchModalProps> = ({ onClose, onFetch, show }
               <label className="label">URL</label>
               <div className="control">
                 <input
-                  type="url"
+                  type="text"
                   className="input"
                   value={setting.url}
                   required
                   placeholder="https://api.example.com/data"
+                  name="url"
                 />
               </div>
             </div>
@@ -88,7 +89,7 @@ export const FetchModal: React.FC<FetchModalProps> = ({ onClose, onFetch, show }
               <label className="label">Method</label>
               <div className="control">
                 <div className="select is-fullwidth">
-                  <select value={setting.method}>
+                  <select value={setting.method} name="method">
                     <option value="GET">GET</option>
                     <option value="POST">POST</option>
                     <option value="PUT">PUT</option>

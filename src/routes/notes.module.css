@@ -6,12 +6,12 @@
 }
 
 .sidebar {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
-  padding-right: 1rem;
+  position: fixed;
+  width: 25%;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: var(--background-color);
+  border-right: 1px solid var(--border-color);
 }
 
 .sidebarHeader {
@@ -25,17 +25,15 @@
   gap: 0.5rem;
 }
 
-.note-list {
+.noteList {
   max-height: calc(100vh - 200px);
   overflow-y: auto;
 }
 
 .noteItem {
-  padding: 0.75rem;
-  border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .noteItem:last-child {
@@ -43,12 +41,24 @@
 }
 
 .noteItem:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: var(--hover-color);
 }
 
 .noteItemActive {
-  background-color: rgba(50, 115, 220, 0.1);
-  border-left: 3px solid #3273dc;
+  background-color: var(--primary-color);
+  border-left: 3px solid var(--primary-color);
+}
+
+.noteItemActive .noteTitle {
+  color: white;
+}
+
+.noteItemActive .noteTime {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.noteItemActive .icon {
+  color: white;
 }
 
 .noteItemHeader {
@@ -59,12 +69,17 @@
 }
 
 .noteTitle {
-  font-weight: 500;
+  margin: 0;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
+  max-width: 200px;
+}
+
+.noteTime {
+  margin: 0;
+  opacity: 0.5;
+  font-size: 0.75rem;
 }
 
 .noteItem:hover .noteTitle {
@@ -86,10 +101,17 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-.preview {
-  height: calc(100vh - 200px);
+.content {
+  margin-left: 25%;
+  height: 100vh;
   overflow-y: auto;
+  background-color: var(--background-color);
+}
+
+.preview {
   padding: 1rem;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
 }
 
 .preview h1,
@@ -98,8 +120,10 @@
 .preview h4,
 .preview h5,
 .preview h6 {
-  color: #fff;
-  margin-bottom: 1rem;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: var(--text-color);
+  font-weight: 600;
 }
 
 .preview h1 { font-size: 2em; }
@@ -107,23 +131,23 @@
 .preview h3 { font-size: 1.25em; }
 
 .preview p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
+  margin-bottom: 1em;
 }
 
 .preview code {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--code-background);
   padding: 0.2em 0.4em;
   border-radius: 3px;
   font-family: monospace;
+  font-size: 0.875em;
 }
 
 .preview pre {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--code-background);
   padding: 1em;
   border-radius: 4px;
   overflow-x: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .preview pre code {
@@ -132,14 +156,14 @@
 }
 
 .preview blockquote {
-  border-left: 4px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.7);
-  padding-left: 1rem;
-  margin-bottom: 1rem;
+  border-left: 4px solid var(--border-color);
+  color: var(--text-color-secondary);
+  padding-left: 1em;
+  margin-bottom: 1em;
 }
 
 .preview a {
-  color: #3273dc;
+  color: var(--link-color);
   text-decoration: none;
 }
 
@@ -151,33 +175,33 @@
   max-width: 100%;
   height: auto;
   border-radius: 4px;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .preview ul,
 .preview ol {
-  margin-bottom: 1rem;
-  padding-left: 2rem;
+  margin-bottom: 1em;
+  padding-left: 2em;
 }
 
 .preview li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5em;
 }
 
 .preview table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .preview th,
 .preview td {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  padding: 0.5em;
 }
 
 .preview th {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--table-header-background);
 }
 
 .emptyState {
@@ -188,21 +212,23 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .container {
     flex-direction: column;
   }
 
   .sidebar {
     width: 100%;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    padding-right: 0;
-    padding-bottom: 1rem;
+    height: auto;
+    position: relative;
+  }
+  
+  .content {
+    margin-left: 0;
   }
 
-  .note-list {
-    max-height: 300px;
+  .noteList {
+    max-height: calc(100vh - 150px);
   }
 
   .preview {

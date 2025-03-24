@@ -67,7 +67,7 @@ const EditorComponent: React.FC<EditorProps> = ({
       ref.editor.style.width = `${width}px`;
       const firstChild = ref.editor.children[0];
       if (firstChild) {
-        firstChild.setAttribute('style', 'background-color: transparent;');
+        firstChild.setAttribute('style', 'background-color: var(--background-color);');
       }
     }
   }, []);

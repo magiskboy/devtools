@@ -94,10 +94,6 @@ function RouteComponent() {
     }
   }, [state.b64Data, updateState]);
 
-  const toggleAutoConvert = useCallback(() => {
-    updateState(prev => ({ ...prev, autoConvert: !prev.autoConvert }));
-  }, [updateState]);
-
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {

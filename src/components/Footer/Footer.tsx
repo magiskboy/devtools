@@ -32,8 +32,6 @@ const FooterComponent: React.FC<FooterProps> = () => {
     fetchIP();
   }, []);
 
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__content}>

@@ -13,7 +13,6 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as NotesImport } from './routes/notes'
 
 // Create Virtual Routes
 
@@ -24,6 +23,7 @@ const UrlViewerLazyImport = createFileRoute('/url-viewer')()
 const SqlFmtLazyImport = createFileRoute('/sql-fmt')()
 const RegexLazyImport = createFileRoute('/regex')()
 const OpenapiLazyImport = createFileRoute('/openapi')()
+const NotesLazyImport = createFileRoute('/notes')()
 const JwtDecodeLazyImport = createFileRoute('/jwt-decode')()
 const JsonnetLazyImport = createFileRoute('/jsonnet')()
 const JsonFmtLazyImport = createFileRoute('/json-fmt')()
@@ -77,6 +77,12 @@ const OpenapiLazyRoute = OpenapiLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/openapi.lazy').then((d) => d.Route))
 
+const NotesLazyRoute = NotesLazyImport.update({
+  id: '/notes',
+  path: '/notes',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/notes.lazy').then((d) => d.Route))
+
 const JwtDecodeLazyRoute = JwtDecodeLazyImport.update({
   id: '/jwt-decode',
   path: '/jwt-decode',
@@ -119,12 +125,6 @@ const Base64LazyRoute = Base64LazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/base64.lazy').then((d) => d.Route))
 
-const NotesRoute = NotesImport.update({
-  id: '/notes',
-  path: '/notes',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexLazyRoute = IndexLazyImport.update({
   id: '/',
   path: '/',
@@ -140,13 +140,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/notes': {
-      id: '/notes'
-      path: '/notes'
-      fullPath: '/notes'
-      preLoaderRoute: typeof NotesImport
       parentRoute: typeof rootRoute
     }
     '/base64': {
@@ -196,6 +189,13 @@ declare module '@tanstack/react-router' {
       path: '/jwt-decode'
       fullPath: '/jwt-decode'
       preLoaderRoute: typeof JwtDecodeLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/notes': {
+      id: '/notes'
+      path: '/notes'
+      fullPath: '/notes'
+      preLoaderRoute: typeof NotesLazyImport
       parentRoute: typeof rootRoute
     }
     '/openapi': {
@@ -254,7 +254,6 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
-  '/notes': typeof NotesRoute
   '/base64': typeof Base64LazyRoute
   '/diff': typeof DiffLazyRoute
   '/html': typeof HtmlLazyRoute
@@ -262,6 +261,7 @@ export interface FileRoutesByFullPath {
   '/json-fmt': typeof JsonFmtLazyRoute
   '/jsonnet': typeof JsonnetLazyRoute
   '/jwt-decode': typeof JwtDecodeLazyRoute
+  '/notes': typeof NotesLazyRoute
   '/openapi': typeof OpenapiLazyRoute
   '/regex': typeof RegexLazyRoute
   '/sql-fmt': typeof SqlFmtLazyRoute
@@ -273,7 +273,6 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
-  '/notes': typeof NotesRoute
   '/base64': typeof Base64LazyRoute
   '/diff': typeof DiffLazyRoute
   '/html': typeof HtmlLazyRoute
@@ -281,6 +280,7 @@ export interface FileRoutesByTo {
   '/json-fmt': typeof JsonFmtLazyRoute
   '/jsonnet': typeof JsonnetLazyRoute
   '/jwt-decode': typeof JwtDecodeLazyRoute
+  '/notes': typeof NotesLazyRoute
   '/openapi': typeof OpenapiLazyRoute
   '/regex': typeof RegexLazyRoute
   '/sql-fmt': typeof SqlFmtLazyRoute
@@ -293,7 +293,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
-  '/notes': typeof NotesRoute
   '/base64': typeof Base64LazyRoute
   '/diff': typeof DiffLazyRoute
   '/html': typeof HtmlLazyRoute
@@ -301,6 +300,7 @@ export interface FileRoutesById {
   '/json-fmt': typeof JsonFmtLazyRoute
   '/jsonnet': typeof JsonnetLazyRoute
   '/jwt-decode': typeof JwtDecodeLazyRoute
+  '/notes': typeof NotesLazyRoute
   '/openapi': typeof OpenapiLazyRoute
   '/regex': typeof RegexLazyRoute
   '/sql-fmt': typeof SqlFmtLazyRoute
@@ -314,7 +314,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/notes'
     | '/base64'
     | '/diff'
     | '/html'
@@ -322,6 +321,7 @@ export interface FileRouteTypes {
     | '/json-fmt'
     | '/jsonnet'
     | '/jwt-decode'
+    | '/notes'
     | '/openapi'
     | '/regex'
     | '/sql-fmt'
@@ -332,7 +332,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/notes'
     | '/base64'
     | '/diff'
     | '/html'
@@ -340,6 +339,7 @@ export interface FileRouteTypes {
     | '/json-fmt'
     | '/jsonnet'
     | '/jwt-decode'
+    | '/notes'
     | '/openapi'
     | '/regex'
     | '/sql-fmt'
@@ -350,7 +350,6 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/notes'
     | '/base64'
     | '/diff'
     | '/html'
@@ -358,6 +357,7 @@ export interface FileRouteTypes {
     | '/json-fmt'
     | '/jsonnet'
     | '/jwt-decode'
+    | '/notes'
     | '/openapi'
     | '/regex'
     | '/sql-fmt'
@@ -370,7 +370,6 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
-  NotesRoute: typeof NotesRoute
   Base64LazyRoute: typeof Base64LazyRoute
   DiffLazyRoute: typeof DiffLazyRoute
   HtmlLazyRoute: typeof HtmlLazyRoute
@@ -378,6 +377,7 @@ export interface RootRouteChildren {
   JsonFmtLazyRoute: typeof JsonFmtLazyRoute
   JsonnetLazyRoute: typeof JsonnetLazyRoute
   JwtDecodeLazyRoute: typeof JwtDecodeLazyRoute
+  NotesLazyRoute: typeof NotesLazyRoute
   OpenapiLazyRoute: typeof OpenapiLazyRoute
   RegexLazyRoute: typeof RegexLazyRoute
   SqlFmtLazyRoute: typeof SqlFmtLazyRoute
@@ -389,7 +389,6 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
-  NotesRoute: NotesRoute,
   Base64LazyRoute: Base64LazyRoute,
   DiffLazyRoute: DiffLazyRoute,
   HtmlLazyRoute: HtmlLazyRoute,
@@ -397,6 +396,7 @@ const rootRouteChildren: RootRouteChildren = {
   JsonFmtLazyRoute: JsonFmtLazyRoute,
   JsonnetLazyRoute: JsonnetLazyRoute,
   JwtDecodeLazyRoute: JwtDecodeLazyRoute,
+  NotesLazyRoute: NotesLazyRoute,
   OpenapiLazyRoute: OpenapiLazyRoute,
   RegexLazyRoute: RegexLazyRoute,
   SqlFmtLazyRoute: SqlFmtLazyRoute,
@@ -417,7 +417,6 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/notes",
         "/base64",
         "/diff",
         "/html",
@@ -425,6 +424,7 @@ export const routeTree = rootRoute
         "/json-fmt",
         "/jsonnet",
         "/jwt-decode",
+        "/notes",
         "/openapi",
         "/regex",
         "/sql-fmt",
@@ -436,9 +436,6 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.lazy.tsx"
-    },
-    "/notes": {
-      "filePath": "notes.tsx"
     },
     "/base64": {
       "filePath": "base64.lazy.tsx"
@@ -460,6 +457,9 @@ export const routeTree = rootRoute
     },
     "/jwt-decode": {
       "filePath": "jwt-decode.lazy.tsx"
+    },
+    "/notes": {
+      "filePath": "notes.lazy.tsx"
     },
     "/openapi": {
       "filePath": "openapi.lazy.tsx"

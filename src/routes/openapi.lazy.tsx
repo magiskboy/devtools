@@ -7,7 +7,7 @@ export const Route = createLazyFileRoute('/openapi')({
 })
 
 function RouteComponent() {
-  const [inputUrl, setInputUrl] = useState('https://api.apis.guru/v2/specs/github.com/1.1.4/openapi.yaml');
+  const [inputUrl, setInputUrl] = useState('https://petstore3.swagger.io/api/v3/openapi.json');
   const [doc, setDoc] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

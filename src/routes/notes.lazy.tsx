@@ -1,11 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 import { useState, useEffect } from 'react';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import { NoteSidebar } from '@/components/Notes/NoteSidebar';
 import { NoteEditor } from '@/components/Notes/NoteEditor';
 import { Note } from '@/components/Notes/types'
 
-export const Route = createFileRoute('/notes')({
+export const Route = createLazyFileRoute('/notes')({
   component: RouteComponent,
 })
 

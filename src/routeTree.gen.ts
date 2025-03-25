@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as RegexImport } from './routes/regex'
 import { Route as NotesImport } from './routes/notes'
 
 // Create Virtual Routes
@@ -98,6 +99,12 @@ const Base64LazyRoute = Base64LazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/base64.lazy').then((d) => d.Route))
 
+const RegexRoute = RegexImport.update({
+  id: '/regex',
+  path: '/regex',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const NotesRoute = NotesImport.update({
   id: '/notes',
   path: '/notes',
@@ -126,6 +133,13 @@ declare module '@tanstack/react-router' {
       path: '/notes'
       fullPath: '/notes'
       preLoaderRoute: typeof NotesImport
+      parentRoute: typeof rootRoute
+    }
+    '/regex': {
+      id: '/regex'
+      path: '/regex'
+      fullPath: '/regex'
+      preLoaderRoute: typeof RegexImport
       parentRoute: typeof rootRoute
     }
     '/base64': {
@@ -213,6 +227,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/notes': typeof NotesRoute
+  '/regex': typeof RegexRoute
   '/base64': typeof Base64LazyRoute
   '/html': typeof HtmlLazyRoute
   '/jq': typeof JqLazyRoute
@@ -229,6 +244,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/notes': typeof NotesRoute
+  '/regex': typeof RegexRoute
   '/base64': typeof Base64LazyRoute
   '/html': typeof HtmlLazyRoute
   '/jq': typeof JqLazyRoute
@@ -246,6 +262,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/notes': typeof NotesRoute
+  '/regex': typeof RegexRoute
   '/base64': typeof Base64LazyRoute
   '/html': typeof HtmlLazyRoute
   '/jq': typeof JqLazyRoute
@@ -264,6 +281,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/notes'
+    | '/regex'
     | '/base64'
     | '/html'
     | '/jq'
@@ -279,6 +297,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/notes'
+    | '/regex'
     | '/base64'
     | '/html'
     | '/jq'
@@ -294,6 +313,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/notes'
+    | '/regex'
     | '/base64'
     | '/html'
     | '/jq'
@@ -311,6 +331,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   NotesRoute: typeof NotesRoute
+  RegexRoute: typeof RegexRoute
   Base64LazyRoute: typeof Base64LazyRoute
   HtmlLazyRoute: typeof HtmlLazyRoute
   JqLazyRoute: typeof JqLazyRoute
@@ -327,6 +348,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   NotesRoute: NotesRoute,
+  RegexRoute: RegexRoute,
   Base64LazyRoute: Base64LazyRoute,
   HtmlLazyRoute: HtmlLazyRoute,
   JqLazyRoute: JqLazyRoute,
@@ -352,6 +374,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/notes",
+        "/regex",
         "/base64",
         "/html",
         "/jq",
@@ -370,6 +393,9 @@ export const routeTree = rootRoute
     },
     "/notes": {
       "filePath": "notes.tsx"
+    },
+    "/regex": {
+      "filePath": "regex.tsx"
     },
     "/base64": {
       "filePath": "base64.lazy.tsx"

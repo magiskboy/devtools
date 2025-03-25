@@ -21,6 +21,8 @@
     "@codemirror/legacy-modes": "^6.4.3",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@tanstack/react-router": "^1.114.17",
+    "@tiptap/core": "^2.11.5",
+    "@tiptap/pm": "^2.11.5",
     "@types/dompurify": "^3.0.5",
     "@types/marked": "^5.0.2",
     "@uiw/codemirror-extensions-basic-setup": "^4.23.10",

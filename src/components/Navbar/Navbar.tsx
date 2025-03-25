@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router"
 import { useMenuContext } from '@/hooks';
+import { FaBloggerB, FaGithub, FaNetworkWired, FaUser } from "react-icons/fa";
 
 export const Navbar: React.FC<{className?: string}> = ({className}) => {
   const { title } = useMenuContext();
@@ -20,7 +21,7 @@ export const Navbar: React.FC<{className?: string}> = ({className}) => {
 
       <div id="devtoolsNavbar" className="navbar-menu">
         <div className="navbar-start">
-          <Link className="navbar-item" to="/"> {title} </Link>
+          <div className="navbar-item"> {title} </div>
         </div>
 
         <div className="navbar-end">
@@ -28,7 +29,9 @@ export const Navbar: React.FC<{className?: string}> = ({className}) => {
             <div className="field is-grouped">
               <p className="control">
                 <a target="_blank" href="https://github.com/magiskboy/devtools" style={{ display: 'block' }}>
-                  <span> Github </span>
+                  <span className="icon has-text-white">
+                    <FaGithub />
+                  </span>
                 </a>
               </p>
             </div>
@@ -38,7 +41,9 @@ export const Navbar: React.FC<{className?: string}> = ({className}) => {
             <div className="field is-grouped">
               <p className="control">
                 <a target="_blank" href="https://nkthanh.dev">
-                  <span> About me </span>
+                  <span className="icon has-text-white">
+                    <FaUser />
+                  </span>
                 </a>
               </p>
             </div>

@@ -202,7 +202,10 @@ function RouteComponent() {
                   className={`box is-shadowless mb-2 p-2 ${styles.noteItem} ${
                     selectedNote?.id === note.id ? styles.noteItemActive : ''
                   }`}
-                  onClick={() => setSelectedNote(note)}
+                  onClick={() => {
+                    setSelectedNote(note);
+                    setIsPreview(true);
+                  }}
                 >
                   <div className="level is-mobile">
                     <div className="level-left">

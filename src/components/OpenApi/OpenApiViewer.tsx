@@ -9,27 +9,28 @@ export function OpenApiViewer({ apiDescriptionUrl }: OpenApiViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     // Clear previous content
-    containerRef.current.innerHTML = '';
+    container.innerHTML = '';
 
     // Create API viewer element
     const api = document.createElement('elements-api');
     api.setAttribute('apiDescriptionUrl', apiDescriptionUrl);
     api.setAttribute('router', 'hash');
     api.setAttribute('layout', 'sidebar');
-    containerRef.current.appendChild(api);
+    container.appendChild(api);
 
     // Load required script
     const script = document.createElement('script');
     script.src = 'https://unpkg.com/@stoplight/elements/web-components.min.js';
-    containerRef.current.appendChild(script);
+    container.appendChild(script);
 
     // Cleanup
     return () => {
-      if (containerRef.current) {
-        containerRef.current.innerHTML = '';
+      if (container) {
+        container.innerHTML = '';
       }
     };
   }, [apiDescriptionUrl]);

@@ -2,9 +2,7 @@ import { useEffect, useState, memo } from "react";
 import { getMyIP } from "../../libs/helpers";
 import styles from './Footer.module.css';
 
-interface FooterProps {}
-
-const FooterComponent: React.FC<FooterProps> = () => {
+const FooterComponent: React.FC = () => {
   const [ipState, setIpState] = useState<{
     ip: string;
     isLoading: boolean;

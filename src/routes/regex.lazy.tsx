@@ -2,7 +2,7 @@ import { createLazyFileRoute } from '@tanstack/react-router'
 import { useState, useCallback, useEffect } from 'react';
 import { Editor } from '@/components';
 import { usePageTitle } from '@/hooks/usePageTitle';
-import { Decoration, ViewPlugin, EditorView, ViewUpdate } from '@codemirror/view';
+import { Decoration, ViewPlugin, ViewUpdate } from '@codemirror/view';
 import { RangeSet } from '@codemirror/state';
 
 interface Match {
@@ -15,7 +15,7 @@ const createHighlightPlugin = (matches: Match[]) => {
     return ViewPlugin.fromClass(class {
         decorations: RangeSet<Decoration>;
 
-        constructor(_: EditorView) {
+        constructor() {
             let decorations: RangeSet<Decoration> = RangeSet.empty;
 
             matches.forEach((match) => {
@@ -34,7 +34,7 @@ const createHighlightPlugin = (matches: Match[]) => {
                 });
 
                 // Add decorations for groups
-                match.groups.forEach((group, _) => {
+                match.groups.forEach((group) => {
                     const groupFrom = from + match.match.indexOf(group);
                     const groupTo = groupFrom + group.length;
 
@@ -95,7 +95,7 @@ function RouteComponent() {
             }
 
             const flagString = Object.entries(flags)
-                .filter(([_, value]) => value)
+                .filter(([, value]) => value)
                 .map(([key]) => {
                     switch (key) {
                         case 'global': return 'g';

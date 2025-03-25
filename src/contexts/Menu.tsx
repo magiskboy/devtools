@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 
 export const MenuContext = createContext({
   title: "DevTools",
@@ -6,18 +6,3 @@ export const MenuContext = createContext({
     console.log(value);
   },
 });
-
-export const MenuProvider = ({ children }: { children: React.ReactNode }) => {
-  const [title, setTitle] = useState("DevTools");
-
-  return (
-    <MenuContext.Provider
-      value={{
-        title,
-        setTitle,
-      }}
-    >
-      {children}
-    </MenuContext.Provider>
-  );
-};

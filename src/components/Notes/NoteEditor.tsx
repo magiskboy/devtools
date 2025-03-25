@@ -54,7 +54,7 @@ export const NoteEditor = ({ selectedNote, setSelectedNote, isPreview, setIsPrev
             note.id === selectedNote.id ? updatedNote : note
         ));
         setSelectedNote(updatedNote);
-    }, [selectedNote, extractTitle, extractTags]);
+    }, [selectedNote, extractTitle, extractTags, setNotes, setSelectedNote]);
 
     return (
         <div className={styles.content}>

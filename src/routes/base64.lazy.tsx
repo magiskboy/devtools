@@ -56,7 +56,7 @@ function RouteComponent() {
         b64Data: encodeBase64(state.data),
         error: null 
       });
-    } catch (err) {
+    } catch {
       updateState({ error: 'Failed to encode data. Please check your input.' });
     }
   }, [state.data, updateState]);
@@ -68,7 +68,7 @@ function RouteComponent() {
         data: decodeBase64(state.b64Data),
         error: null 
       });
-    } catch (err) {
+    } catch {
       updateState({ error: 'Failed to decode data. Please check if the input is valid Base64.' });
     }
   }, [state.b64Data, updateState]);
@@ -79,10 +79,10 @@ function RouteComponent() {
       if (event.ctrlKey || event.metaKey) {
         if (event.key === 'e') {
           event.preventDefault();
-          handleEncode(event as any);
+          handleEncode(event as unknown as React.MouseEvent<HTMLButtonElement>);
         } else if (event.key === 'd') {
           event.preventDefault();
-          handleDecode(event as any);
+          handleDecode(event as unknown as React.MouseEvent<HTMLButtonElement>);
         }
       }
     };

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router"
-import { useMenuContext } from '@/contexts';
+import { useMenuContext } from '@/hooks';
 
 export const Navbar: React.FC<{className?: string}> = ({className}) => {
   const { title } = useMenuContext();

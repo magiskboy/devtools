@@ -19,7 +19,7 @@ interface Note {
 
 interface Props {
     notes: Note[];
-    setNotes: (notes: Note[]) => void;
+    setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
     setIsPreview: (isPreview: boolean) => void;
     onSelectNote?: React.Dispatch<React.SetStateAction<Note | null>>;
 }
@@ -38,26 +38,26 @@ export const NoteSidebar = ({ setIsPreview, onSelectNote, notes, setNotes }: Pro
             createdAt: Date.now(),
             updatedAt: Date.now()
         };
-        setNotes([...notes, newNote]);
+        setNotes(prev => [...prev, newNote]);
         setSelectedNote(newNote);
         setSearchQuery(''); // Clear the search after creating note
-    }, [searchQuery]);
+    }, [searchQuery, setNotes, setSelectedNote]);
 
     const formatDate = useCallback((timestamp: number) => {
         return new Date(timestamp).toLocaleString();
     }, []);
 
     const deleteNote = useCallback((noteId: string) => {
-        setNotes(notes.filter(note => note.id !== noteId));
+        setNotes(prev => prev.filter(note => note.id !== noteId));
         if (selectedNote?.id === noteId) {
             setSelectedNote(null);
         }
-    }, [selectedNote]);
+    }, [selectedNote, setNotes]);
 
     useEffect(() => {
         if (!selectedNote) return;
         onSelectNote?.(selectedNote);
-    }, [selectedNote]);
+    }, [selectedNote, onSelectNote]);
 
     // Get all unique tags
     const allTags = useCallback(() => {

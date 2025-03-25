@@ -26,7 +26,7 @@ function RouteComponent() {
       // Validate URL
       new URL(inputUrl);
       setDoc(inputUrl);
-    } catch (err) {
+    } catch {
       setError('Please enter a valid URL');
     } finally {
       setIsLoading(false);

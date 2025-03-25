@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet, createRootRoute } from '@tanstack/react-router'
-import { MenuProvider } from '@/contexts';
+import { MenuProvider } from '@/providers';
 import { SearchModal, Layout } from '@/components';
 
 export const Route = createRootRoute({

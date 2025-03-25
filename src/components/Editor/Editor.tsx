@@ -1,6 +1,5 @@
-// External dependencies
 import CodeMirror from '@uiw/react-codemirror';
-import type { ReactCodeMirrorProps } from '@uiw/react-codemirror';
+import type { ReactCodeMirrorProps, ReactCodeMirrorRef } from '@uiw/react-codemirror';
 import { basicSetup } from '@uiw/codemirror-extensions-basic-setup';
 import { memo, useCallback, useRef, useState, ReactNode } from 'react';
 import { isDarkMode } from '@/libs/helpers';
@@ -59,7 +58,7 @@ const EditorComponent: React.FC<EditorProps> = ({
     onChange?.(data);
   }, [onChange]);
 
-  const handleRef = useCallback((ref: any) => {
+  const handleRef = useCallback((ref: ReactCodeMirrorRef) => {
     if (!ref?.editor) return;
     
     const width = ref.editor.clientWidth;

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useMenuContext } from '@/contexts';
+import { useMenuContext } from '@/hooks';
 
 export function usePageTitle(title: string) {
   const { setTitle } = useMenuContext();

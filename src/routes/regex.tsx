@@ -15,7 +15,7 @@ const createHighlightPlugin = (matches: Match[]) => {
     return ViewPlugin.fromClass(class {
         decorations: RangeSet<Decoration>;
 
-        constructor(view: EditorView) {
+        constructor(_: EditorView) {
             let decorations: RangeSet<Decoration> = RangeSet.empty;
 
             matches.forEach((match) => {
@@ -34,7 +34,7 @@ const createHighlightPlugin = (matches: Match[]) => {
                 });
 
                 // Add decorations for groups
-                match.groups.forEach((group, groupIndex) => {
+                match.groups.forEach((group, _) => {
                     const groupFrom = from + match.match.indexOf(group);
                     const groupTo = groupFrom + group.length;
 

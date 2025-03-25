@@ -12,7 +12,6 @@ import {
   FaTrash, 
   FaSearch, 
   FaTag, 
-  FaClock,
   FaEdit,
   FaEye
 } from 'react-icons/fa';

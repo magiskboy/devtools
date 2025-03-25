@@ -1,5 +1,6 @@
 export const ROUTE_CONFIG = [
   { "name": "Notes", "path": "/notes", "description": "A tool for creating and managing notes." },
+  { "name": "OpenAPI", "path": "/openapi", "description": "A tool for creating and managing OpenAPI specifications." },
   { "name": "Jsonnet", "path": "/jsonnet", "description": "A data templating language for defining and generating JSON with advanced features like variables, conditionals, and functions." },
   { "name": "JWT decode", "path": "/jwt-decode", "description": "A tool for decoding JSON Web Tokens (JWT), a standard for securely transmitting information between parties." },
   { "name": "SQL fmt", "path": "/sql-fmt", "description": "A SQL formatter that structures and beautifies SQL queries for improved readability and maintainability." },

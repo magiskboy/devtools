@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 import { useState, useCallback, useEffect } from 'react';
 import { Editor } from '@/components';
 import { usePageTitle } from '@/hooks/usePageTitle';
@@ -67,7 +67,7 @@ const createHighlightPlugin = (matches: Match[]) => {
     });
 };
 
-export const Route = createFileRoute('/regex')({
+export const Route = createLazyFileRoute('/regex')({
     component: RouteComponent,
 })
 

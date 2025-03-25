@@ -1,0 +1,106 @@
+.defaultBrowser {
+  color: black;
+  background-color: white;
+}
+
+.defaultBrowser hr {
+  border-top-width: 1px;
+}
+
+.defaultBrowser img {
+  border-style: solid;
+}
+
+.defaultBrowser textarea {
+  resize: vertical;
+}
+
+.defaultBrowser input::-ms-input-placeholder,
+.defaultBrowser textarea::-ms-input-placeholder {
+  color: #a1a1aa;
+}
+
+.defaultBrowser input::placeholder,
+.defaultBrowser textarea::placeholder {
+  color: #a1a1aa;
+}
+
+.defaultBrowser [role=button],
+.defaultBrowser button {
+  cursor: pointer;
+}
+
+.defaultBrowser table {
+  border-collapse: collapse;
+}
+
+.defaultBrowser h1,
+.defaultBrowser h2,
+.defaultBrowser h3,
+.defaultBrowser h4,
+.defaultBrowser h5,
+.defaultBrowser h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.defaultBrowser a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.defaultBrowser button,
+.defaultBrowser input,
+.defaultBrowser optgroup,
+.defaultBrowser select,
+.defaultBrowser textarea {
+  color: inherit;
+  line-height: inherit;
+  padding: 0;
+}
+
+.defaultBrowser code,
+.defaultBrowser kbd,
+.defaultBrowser pre,
+.defaultBrowser samp {
+  font-family: var(--font-mono);
+}
+
+.defaultBrowser audio,
+.defaultBrowser canvas,
+.defaultBrowser embed,
+.defaultBrowser iframe,
+.defaultBrowser img,
+.defaultBrowser object,
+.defaultBrowser svg,
+.defaultBrowser video {
+  display: block;
+  vertical-align: middle;
+}
+
+.defaultBrowser img,
+.defaultBrowser video {
+  height: auto;
+  max-width: 100%;
+}
+
+.defaultBrowser button {
+  font-family: var(--font-ui);
+}
+
+.defaultBrowser select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.defaultBrowser select::-ms-expand {
+  display: none;
+}
+
+.defaultBrowser select {
+  font-size: inherit;
+}
+
+.defaultBrowser iframe {
+  border: 0;
+}
